@@ -1,0 +1,34 @@
+---
+description: Enforce commit title rules when commit/push is requested
+alwaysApply: true
+---
+
+# Git Commit Title Guideline
+
+Apply this rule when the user asks to create a git commit or push commits.
+
+## Title Format
+
+- Write the title in English only.
+- Keep the title within 50 characters.
+- Start with one verb: Add / Update / Remove / Improve / Refactor.
+- Do not end the title with a period.
+- Avoid vague titles. Do not use standalone words like "update", "work", or "test".
+
+## Type Prefix
+
+Use exactly one prefix at the start of the title:
+
+- `#feat`: Add a new feature.
+- `#fix`: Fix a bug.
+- `#asset`: Add or update assets (sprite, sound, animation, etc.).
+- `#scene`: Change scene files.
+- `#refactor`: Refactor code without behavior change.
+- `#perf`: Improve performance.
+- `#docs`: Update documentation.
+- `#chore`: Build config, Unity version, or package changes.
+- `#revert`: Revert a previous commit.
+
+## Valid Example
+
+`#feat Add combo damage scaling by weapon tier`

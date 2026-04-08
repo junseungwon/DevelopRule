@@ -1,0 +1,56 @@
+---
+description: Unity 협업 명명 규칙 강제 (코드/UI/에셋)
+alwaysApply: true
+---
+
+# Unity Collaboration Naming Rule
+
+기준 문서: `MD_File/🎮 유니티 게임 협업 명명 규칙 2b3be4df9cfb8027b515d8efe0919d65.md`
+
+이 프로젝트에서 AI가 생성/수정하는 이름은 아래 규칙을 우선 적용한다.
+
+## 1) 케이스 규칙
+- 클래스/메서드/프로퍼티/이벤트: `PascalCase`
+- 지역 변수/매개변수: `camelCase`
+- private 필드: `_camelCase`
+- 상수(`const`): `UPPER_CASE`
+
+## 2) 클래스/메서드 명명
+- 클래스는 의미 있는 명사형으로 작성한다.
+- 관리자 클래스는 `Manager` 접미사를 사용한다. (예: `GameManager`)
+- 제어 클래스는 `Controller` 접미사를 사용한다. (예: `PlayerController`)
+- UI 화면/패널 클래스는 `UI` 또는 `Panel` 접미사를 사용한다. (예: `MainMenuUI`, `SettingsPanel`)
+- 메서드는 동사로 시작한다. Bool 반환 메서드는 `Is/Has/Can`으로 시작한다.
+- 이벤트 핸들러 메서드는 `On`으로 시작한다.
+
+## 3) 변수 명명
+- private 필드와 `[SerializeField] private` 필드는 `_camelCase`를 사용한다.
+- Unity 컴포넌트 참조는 타입이 드러나게 작성한다.
+  - 예: `_playerRigidbody`, `_characterAnimator`, `_audioSource`
+  - 약어를 쓰면 팀 내에서 일관되게 유지한다. (예: `_rb`, `_anim`, `_audio`)
+- public 필드 직접 노출보다 프로퍼티 사용을 우선한다.
+
+## 3-1) 초기화·접근 제한자·설정 툴팁 (필수)
+- **초기화**: 필드·지역 변수를 선언한 뒤에는 가능한 한 같은 범위에서 의미 있는 초기값을 부여한다. (`Awake`/`Start`/생성자 등 생명주기에 맞게)
+  - 컴파일러 기본값에만 의존하지 않고, 의도가 드러나도록 둔다.
+- **접근 제한자**: 타입 멤버(필드·메서드·프로퍼티·이벤트·중첩 타입 등)에는 `public` / `private` / `protected` / `internal` 중 하나를 **반드시** 명시한다. (기본 접근성에 맡기지 않는다.)
+- **설정용 툴팁**: 인스펙터에서 조정하는 값은 `[SerializeField]`·`[Header]` 등과 함께 **`[Tooltip("…")]`** 로 용도·단위·주의사항을 짧게 적는다.
+  - ScriptableObject의 직렬화 필드, 런타임 튜닝용 `[SerializeField]` 모두 동일하게 적용한다.
+
+## 4) UI 변수 명명 (필수)
+- UI 변수명에는 컴포넌트 타입 접미사를 반드시 포함한다.
+- 예시: `_startButton`, `_scoreText`, `_titleTMP`, `_iconImage`, `_volumeSlider`, `_nameInputField`, `_resolutionDropdownTMP`, `_settingsPanel`
+
+## 5) 에셋 명명
+- 에셋 타입 접두사를 사용한다.
+  - `MAT_`, `TEX_`, `SPR_`, `ICO_`, `BGM_`, `SFX_`, `ANIM_`, `AC_`, `UI_`, `Enemy_`, `WPN_`, `VFX_`, `FNT_`
+- 씬 파일은 숫자 접두사를 사용한다. (예: `00_Bootstrap`, `01_MainMenu`, `02_Level_01`)
+
+## 6) 금지사항
+- 숫자만으로 구분되는 이름 금지 (`button1`, `enemy2`)
+- 의미 없는 축약/모호한 이름 금지 (`temp`, `data`, `DoStuff`)
+- 한글 식별자 금지
+- UI 타입 누락 이름 금지 (`start`, `score`, `icon`)
+- 동일 문맥에서 약어/풀네임 혼용 금지
+
+규칙 충돌 시, 위 기준 문서와 기존 코드베이스의 일관성을 우선한다.

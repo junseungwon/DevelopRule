@@ -1,0 +1,33 @@
+---
+description: HSM 상태 클래스 구조 및 책임 규칙
+globs: Assets/02_Scripts/Character/Jelly/**/*.cs
+alwaysApply: false
+---
+
+# HSM State Structure Rules
+
+## 상태 구현 템플릿
+
+```csharp
+public class XxxState : IState
+{
+    private readonly CharacterContext _ctx;
+    public XxxState(CharacterContext ctx) => _ctx = ctx;
+
+    public void Enter() { /* Controller 호출 + ASC.AddTag */ }
+    public void Tick(float dt) { /* Model 읽기 + Controller 호출 */ }
+    public void Exit() { /* Controller 호출 + ASC.RemoveTag */ }
+}
+```
+
+## 책임 분리
+
+- `Enter`: 진입 초기화, 관련 태그 추가, 필요한 Controller 의도 메서드 호출
+- `Tick`: Model 상태를 읽고 분기/행동 수행, 지속 로직 처리
+- `Exit`: 종료 정리, 관련 태그 제거, 복구 동작 수행
+
+## 구현 원칙
+
+- 상태는 "현재 상태의 동작"만 가진다.
+- 전환 결정 로직은 상태 클래스에 과도하게 넣지 않고 HSM 전환 계층에서 관리한다.
+- 자주 반복되는 원자 조합은 Feature Controller 의도 메서드로 승격한다.

@@ -1,0 +1,25 @@
+---
+description: HSM 전환 조건과 태그 동기화 규칙
+globs: Assets/02_Scripts/Character/Jelly/**/*.cs
+alwaysApply: false
+---
+
+# HSM Transition And Tag Rules
+
+## 전환 설계 원칙
+
+- 한 레이어 내에서는 동시에 하나의 상태만 활성화한다.
+- Ground/Air 레이어 책임을 섞지 않는다.
+- 상태 전환 조건은 명시적이고 단방향으로 관리한다.
+
+## 태그 동기화 규칙
+
+- 상태 진입 시 해당 상태 태그를 추가하고, 탈출 시 제거한다.
+- 예시: `State.Airborne`, `State.WallStick`, `State.WallLean`, `State.Crawling`
+- 태그 누락/잔존이 없도록 `Enter/Exit`를 항상 쌍으로 구현한다.
+
+## 체크리스트
+
+- 전환 직후 충돌 상태 태그가 동시에 남지 않는가
+- 상태 변경 시 Controller 복구 로직이 실행되는가
+- Air 진입/복귀 시 이동 파라미터가 일관되게 갱신되는가

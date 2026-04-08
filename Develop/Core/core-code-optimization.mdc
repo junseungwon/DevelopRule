@@ -1,0 +1,84 @@
+﻿---
+description: Unity 런타임 최적화·GC·핫패스 작성 시 적용 (측정 우선·최소 변경)
+alwaysApply: false
+---
+
+# Code Optimization Writing Rule (Unity / C#)
+
+성능·할당·핫패스를 다루는 코드 작성·리뷰 시 적용한다. ``Develop/Core/core-senior-practical-development.mdc``와 함께 읽는다.
+
+## 1) 상위 규칙과의 관계
+
+- **변경 범위 최소화**, **MVC 책임 분리**, **가독성·유지보수**는 기본이다.
+- 위 원칙과 **충돌하는 최적화**는, **Profiler 등 측정·프로파일 근거**가 있을 때만 허용한다. (추측 기반 미세 튜닝은 지양)
+
+## 2) 원칙
+
+- **측정 없는 최적화**는 우선순위를 낮춘다. 병목은 보통 다음에서 드러난다.
+  - ``Update`` / ``LateUpdate`` / 코루틴의 매 프레임 경로
+  - ``FixedUpdate``, 물리 콜백(``OnCollision*``, ``OnTrigger*``)
+  - 타이트한 루프 내부 할당, LINQ on hot path
+- **동작 동일**을 전제로 한다. (시각·물리·게임플레이 결과가 의도치 않게 바뀌면 실패)
+
+## 3) Unity / C# 구체 규칙
+
+### 할당 (GC)
+
+- 핫 루프에서 **매 프레임** ``new`` 배열·``new List``·임시 컬렉션 생성을 피한다.
+- **문자열** 반복 연결(``+`` 누적), **박싱**, **LINQ**(새 열거·할당)는 핫 경로에서 지양한다.
+- 필요 시 **재사용 버퍼**, **``ArrayPool<T>``**, **``Span``/``ReadOnlySpan``**(API·버전이 허용할 때), **오브젝트 풀**을 검토한다. (무조건 도입이 아니라 측정 뒤 선택)
+
+### Unity API
+
+- **``GetComponent`` / ``Find`` / ``FindObjectOfType``** 등: 매 프레임·매 호출 반복 대신 ``Awake``/``OnEnable`` 등에서 **캐시**하는 패턴을 우선한다.
+- **``Camera.main``** 등 비용이 큰 접근은 캐시·주입을 검토한다.
+
+### 물리
+
+- ``OnCollision`` / ``OnTrigger`` 안에서 **무거운 연산**, **Find**, **미캐시 GetComponent 반복**을 피한다.
+
+### 수학 타입
+
+- ``Unity.Mathematics.float3`` 등과 ``UnityEngine.Vector3``를 오가는 코드는 **루프마다 동일 변환 로직이 반복**되면 private 헬퍼로 모아 중복·실수를 줄인다. (예: 스플라인 샘플 후 블렌드까지 한 메서드로 통합 검토 — ``SplineArmPathBuilder`` 등)
+
+### 패턴 요약표 (나쁜 예 / 좋은 예)
+
+| 규칙 | 나쁜 예 | 좋은 예 |
+|------|---------|---------|
+| 컴포넌트 참조 | ``Update``에서 ``GetComponent`` | ``Awake`` / ``OnEnable``에서 캐시 |
+| Animator 파라미터 | ``SetBool("IsRun")`` 등 문자열 매 호출 | ``Animator.StringToHash``로 해시 캐시 후 ``SetBool(id, …)`` |
+| 배열·버퍼 할당 | 매 프레임 ``new`` 배열 | 멤버·풀·``ArrayPool`` 등으로 재사용 (크기·수명 주의) |
+| 물리 쿼리 | ``OverlapSphere`` 등 NonAlloc 대안이 있는 API를 매번 할당형으로 호출 | ``OverlapSphereNonAlloc`` 등 + 결과 버퍼 재사용 |
+| 오브젝트 생성/파괴 | 핫 경로에서 ``Instantiate`` / ``Destroy`` 남용 | 오브젝트 풀·재활용 (프로젝트 풀 유틸 우선) |
+| 빈 라이프사이클 | 내용 없는 ``Update()`` 방치 | 미사용이면 메서드·컴포넌트 제거 (Unity도 호출 비용 존재) |
+| 머티리얼 인스턴스 | ``renderer.material`` (인스턴스 생성·할당) | 가능하면 ``sharedMaterial`` 또는 **``MaterialPropertyBlock``**으로 per-instance 값만 변경 |
+| 주기 작업 | 매 프레임 ``Update``에서만 체크 | ``InvokeRepeating``, 코루틴+대기, 타이머 필드 등으로 분리 (요구 정확도에 맞게 선택) |
+
+표의 "좋은 예"는 **상황에 따라** 다르다. NonAlloc API는 **결과 개수 상한**을 알고 버퍼 크기를 맞춰야 하며, ``InvokeRepeating``은 정밀도·중첩 한계가 있으니 도메인에 맞게 선택한다.
+
+### 런타임·에디터 추가 습관
+
+- **``[SerializeField] private``** — 인스펙터 노출이 필요하면 public 필드 대비 **직렬화 + 캡슐화**를 우선한다. (불필요한 외부 접근 차단, ``Develop/Core/core-unity-collab-naming.mdc``와 함께)
+- **``const`` / ``static readonly``** — 컴파일·런타임에 변하지 않는 값은 상수·정적 읽기 전용으로 두어 할당·오타·재계산을 줄인다.
+- **문자열 조합** — 런타임에 여러 조각을 이을 때는 반복 ``+`` 대신 **``StringBuilder``**(``Append`` 등)를 검토한다. (짧은 한두 번 합치기는 ``+``도 무방 — Profiler로 판단)
+- **``Transform`` 캐싱** — Unity 2019 이후 컴포넌트의 ``transform`` 프로퍼티는 내부적으로 캐시된 참조를 돌려주는 것이 일반적이라, **``this.transform``을 매번 쓰는 것만으로 별도 필드에 또 캐시할 필요는 대개 없다.** (과거 자료의 "무조건 캐시" 규칙은 현재 프로젝트에서는 필수 아님)
+- **``WaitForSeconds`` 캐싱** — 코루틴에서 매번 ``new WaitForSeconds(…)``를 만들지 말고, **필드·``static readonly``** 등으로 재사용한다. (``WaitForSecondsRealtime``도 동일)
+
+## 4) 로깅
+
+- 런타임 로그는 ``Develop/Core/core-senior-practical-development.mdc``의 **``DebuggableLog``**, **``IDebug``**, **매 프레임 로그 제한**을 따른다. (본 규칙에서 중복 서술하지 않음)
+
+## 5) 검증
+
+- 변경 전후 **Unity Profiler** / **Deep Profiler** / 필요 시 **Frame Debugger** 등으로 **CPU·GC Alloc**을 비교한다.
+- 수용 기준: **측정상 개선** 또는 **할당 제거**가 확인되고, **기능·연출 회귀가 없을 것**.
+
+## 6) 비목표
+
+- 가독성·구조를 크게 해치는 미세 튜닝만을 위한 리팩터.
+- ``Develop/Core/core-unity-collab-naming.mdc`` 등 **팀 명명·협업 규칙을 깨는** "최적화".
+
+## 7) 우선순위
+
+- 시스템/개발자/플랫폼 지시가 본 규칙보다 우선한다.
+- 충돌 시 상위 지시를 따르되, 가능한 범위에서 측정·최소 변경 원칙을 유지한다.
