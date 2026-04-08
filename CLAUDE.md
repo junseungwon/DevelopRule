@@ -50,15 +50,15 @@
 ```
 .cursor/rules/
 ├── agents/
-│   ├── planner.md
-│   ├── code-developer.md
-│   ├── vfx-effector.md
-│   ├── scene-developer.md
-│   ├── code-reviewer.md
-│   └── qa-inspector.md
+│   ├── planner.mdc
+│   ├── code-developer.mdc
+│   ├── vfx-effector.mdc
+│   ├── scene-developer.mdc
+│   ├── code-reviewer.mdc
+│   └── qa-inspector.mdc
 └── skills/
     └── unity-feature-orchestrator/
-        └── SKILL.md
+        └── SKILL.mdc
 ```
 
 ---
@@ -68,3 +68,4 @@
 | 날짜 | 변경 내용 | 대상 | 사유 |
 |------|----------|------|------|
 | 2026-04-08 | 초기 구성 | 전체 | Unity 기능 개발 하네스 신규 구축 |
+| 2026-04-08 | 룰 파일 확장자 정리 | `.cursor/rules` | Cursor rules 운영 형식(`.mdc`)으로 통일 |

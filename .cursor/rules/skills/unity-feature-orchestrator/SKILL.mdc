@@ -1,0 +1,68 @@
+---
+name: unity-feature-orchestrator
+description: "Unity 기능 개발 오케스트레이터. 기능 기획, C# 구현, VFX 제작, 샘플 씬 구성, 코드 리뷰, QA 검증까지 전체 파이프라인을 조율한다. 작은 기능의 초기 구축, 기존 기능 수정/보완/재실행 요청 시에도 반드시 이 스킬을 사용한다."
+---
+
+# Unity Feature Orchestrator
+
+Unity 기능을 작은 단위로 빠르게 완성하고, 동일 구조로 확장하는 팀 오케스트레이터.
+
+## 실행 모드
+- 기본: 에이전트 팀
+
+## 에이전트 구성
+- `planner`
+- `code-developer`
+- `vfx-effector`
+- `scene-developer`
+- `code-reviewer`
+- `qa-inspector`
+
+## 워크플로우
+
+### Phase 0: 컨텍스트 확인
+1. `_workspace/` 존재 여부 확인
+2. `_workspace/`가 없으면 초기 실행
+3. `_workspace/`가 있고 "수정/보완/재실행" 요청이면 부분 재실행
+
+### Phase 1: 기능 기획 (planner)
+1. 기능 1개를 MVP 범위로 확정
+2. `_workspace/01_planner_feature-spec.md` 생성
+3. 완료 조건과 역할별 작업표 명시
+
+### Phase 2: 구현 (code-developer)
+1. 기능 스펙 기반 C# 구현
+2. 아래 규칙 우선 준수:
+   - `C:\\DevelopRule\\Develop\\Code\\core-Code\\main-code-rules.md`
+   - `C:\\DevelopRule\\Develop\\Code\\core-Code\\code-pattern.md`
+3. 구현 노트 기록: `_workspace/02_code-dev_implementation-notes.md`
+
+### Phase 3: VFX 제작 (vfx-effector)
+1. 코드 트리거와 연동되는 이펙트 제작
+2. `_workspace/03_vfx_effect-spec.md` 기록
+
+### Phase 4: 샘플 씬 구성 (scene-developer)
+1. 테스트 가능한 샘플 씬 구성
+2. `_workspace/04_scene_setup-notes.md` 기록
+
+### Phase 5: 코드 리뷰 (code-reviewer)
+1. 규칙 위반/리스크 검토
+2. `_workspace/05_code-review_report.md` 기록
+3. 필요 시 구현 단계로 피드백 루프
+
+### Phase 6: QA 검증 (qa-inspector)
+1. 기능 요구사항 기준 테스트
+2. `_workspace/06_qa_test-report.md` 기록
+3. 실패 시 원인 담당 에이전트로 재할당
+
+## 출력 규칙
+- 최종 결과는 사용자 요청 경로에 저장
+- 중간 산출물은 `_workspace/`에 보존
+
+## 에러 핸들링
+- 특정 에이전트 실패: 1회 재시도 후 부분 결과로 진행, 누락 명시
+- 리뷰/QA 실패: 실패 원인을 명확히 분류해 해당 Phase로 롤백
+
+## 확장 전략
+- 항상 "작은 기능 1개 완료"를 기준으로 다음 기능을 추가한다.
+- 기능 확장 시 기존 `_workspace/` 산출물을 참고해 재사용한다.
