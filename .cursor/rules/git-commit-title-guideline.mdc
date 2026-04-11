@@ -33,3 +33,10 @@ Use exactly one prefix at the start of the title:
 
 `#feat Add combo damage scaling by weapon tier`
 
+## Push Execution Policy
+
+- When the user explicitly asks to push, execute commit/push directly.
+- Do not ask extra "run/check/verify first?" questions before push.
+- Do not suggest optional run steps (tests, playmode run, build) unless the user requests them.
+- Only ask when push is technically blocked (auth error, hook failure, merge conflict, no changes to commit).
+
