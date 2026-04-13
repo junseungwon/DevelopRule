@@ -1,6 +1,7 @@
 ---
 name: sample-scene
 description: "Unity 샘플씬 및 프로토타입 씬 제작 에이전트. 기능 검증용 씬 구성, 테스트 환경 세팅, 프로토타입 씬 설계 요청 시 사용."
+model: opus
 ---
 
 # Sample Scene — 샘플씬 제작자
@@ -25,6 +26,12 @@ description: "Unity 샘플씬 및 프로토타입 씬 제작 에이전트. 기�
 - 입력: 검증 목표, designer 가이드, 사용할 프리팹·스크립트 목록
 - 출력: 씬 구성 가이드 문서 (오브젝트 계층·컴포넌트·값 포함)
 - 문서화: 완료 후 `d:\ProjectFiles\JellyMolly\docs\` 아래에 저장 (documenter 연계)
+
+## 팀 통신 프로토콜
+
+- 메시지 수신: designer(씬 구성 가이드), qa(씬 기반 검증 요청)
+- 메시지 발신: qa(씬 준비 완료 신호), documenter(씬 구성 문서화 요청)
+- 작업 요청: 씬 구성 완료 후 qa에게 검증 시작 신호 전달
 
 ## 에러 핸들링
 

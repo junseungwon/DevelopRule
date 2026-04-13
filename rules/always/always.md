@@ -23,15 +23,42 @@ claude --dangerously-skip-permissions
 
 ---
 
+## 에이전트 라우팅 (Agent Routing)
+
+- 모든 작업 요청을 처리하기 전, 반드시 `C:\DevelopRule\agents\hub.md` 파일을 먼저 읽는다.
+- `hub.md`에 정의된 에이전트 목록과 라우팅 원칙을 분석하여, 현재 사용자 요청에 가장 적합한 에이전트를 선택하고 해당 에이전트의 역할로 작업을 수행한다.
+- 어떤 에이전트를 사용해야 할지 판단하기 어렵거나 복합 작업인 경우, 허브(Hub)의 라우팅 흐름에 따라 작업 순서를 계획한 뒤 실행한다.
+
+---
+
 ## 대화 종료 시 적용 규칙 기록
 
-매 대화 마지막 응답 하단에 해당 대화에서 적용된 규칙 목록을 아래 형식으로 작성한다.
+매 대화 마지막 응답 하단에 해당 대화에서 적용된 규칙 목록과 토큰 사용량을 아래 형식으로 작성한다.
 파일명과 괄호 안에 한국어 설명을 함께 표기한다.
+
+- 토큰 수는 대화 전체 맥락 기준 추정값이다.
+- Claude Sonnet 4.6 컨텍스트 한도는 200,000 토큰이다.
 
 ```
 ---
 적용 규칙: always.md (항상 적용 규칙), bash.md (Bash 도구 규칙), code.md (코드 작성 규칙), ...
+토큰: 사용 ~X,XXX / 남은 ~XXX,XXX / 한도 200,000
 ```
+
+---
+
+## 에이전트 생성 시 필수 참조
+
+에이전트를 생성할 때는 반드시 아래 하네스 규칙 파일을 먼저 읽는다.
+
+- `C:\DevelopRule\plugins\harness\skills\harness\SKILL.md` — 에이전트 정의 워크플로우 및 필수 섹션
+- `C:\DevelopRule\plugins\harness\skills\harness\references\agent-design-patterns.md` — 에이전트 구조 템플릿 및 팀 아키텍처 패턴
+- `C:\DevelopRule\plugins\harness\skills\harness\references\skill-writing-guide.md` — description 작성 원칙
+
+준수 사항:
+- frontmatter에 `model: opus` 필수 (documenter 제외)
+- `## 팀 통신 프로토콜` 섹션 필수
+- 생성 후 `C:\DevelopRule\agents\hub.md` 업데이트 필수
 
 ---
 

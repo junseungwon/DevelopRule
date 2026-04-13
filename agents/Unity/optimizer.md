@@ -1,6 +1,7 @@
 ---
 name: optimizer
 description: "Unity 퍼포먼스 최적화 에이전트. 프로파일링 분석, 드로우콜 최적화, Update 병목 제거, 메모리 관리 요청 시 사용."
+model: opus
 ---
 
 # Optimizer — 최적화 전문가
@@ -26,6 +27,12 @@ description: "Unity 퍼포먼스 최적화 에이전트. 프로파일링 분석,
 - 출력: 최적화 방안 및 수정 코드
 - 문서화: 완료 후 최적화 보고서를 `d:\ProjectFiles\JellyMolly\docs\` 아래에 저장 (documenter 연계)
 - 규칙 참조: `C:\DevelopRule\rules\details\code\code-pattern.md`
+
+## 팀 통신 프로토콜
+
+- 메시지 수신: developer(구현 완료 코드), qa(성능 관련 버그 리포트)
+- 메시지 발신: qa(최적화 완료 신호), developer(코드 수정 요청), documenter(최적화 보고서 문서화 요청)
+- 작업 요청: 최적화 완료 후 qa에게 재검증 요청
 
 ## 에러 핸들링
 

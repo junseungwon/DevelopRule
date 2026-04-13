@@ -1,6 +1,7 @@
 ---
 name: designer
 description: "Unity 비주얼·UX 디자인 에이전트. Inspector 구성, 애니메이션 파라미터, UI 레이아웃, 씬 구성 요소 설계 요청 시 사용."
+model: opus
 ---
 
 # Designer — 디자이너
@@ -25,6 +26,12 @@ description: "Unity 비주얼·UX 디자인 에이전트. Inspector 구성, 애�
 - 입력: 피처 스펙, 참조 레퍼런스
 - 출력: 디자인 가이드 문서 (수치·구성 포함)
 - 문서화: 완료 후 `d:\ProjectFiles\JellyMolly\docs\` 아래에 저장 (documenter 연계)
+
+## 팀 통신 프로토콜
+
+- 메시지 수신: detail-planner(스펙 전달)
+- 메시지 발신: sample-scene(씬 구성 가이드 전달), documenter(디자인 문서화 요청)
+- 작업 요청: 디자인 완료 후 sample-scene에게 씬 구성 가이드 전달
 
 ## 에러 핸들링
 
