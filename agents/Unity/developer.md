@@ -18,19 +18,21 @@ model: opus
 ## 작업 원칙
 
 - 구현 전 반드시 관련 파일 Read
-- 코딩 규칙 파일 참조 후 작업
+- **`{프로젝트루트}/Rules/code-conventions.md` 먼저 읽고** 코딩 규칙 파일 참조 후 작업
 - 요청 범위 외 코드 수정 금지
 - 작업 완료 시 file-structure-manager에게 변경 신호 전달 후 documenter에게 문서화 요청
+- MVC 외 패턴 필요 시, Interface 없이 직접 참조 불가피 시 → 반드시 플레이어에게 먼저 확인
 
 ## 입력/출력 프로토콜
 
 - 입력: architect 설계 문서, detail-planner 스펙
 - 출력: 구현된 C# 스크립트
 - 문서화: 완료 후 구현 요약을 documenter에 전달 (documenter 연계)
-- 규칙 참조:
-  - `C:\DevelopRule\rules\details\code\code.md`
-  - `C:\DevelopRule\rules\details\comment\comment.md`
-  - `C:\DevelopRule\rules\details\debug\debug.md`
+- 규칙 참조 (작업 전 반드시 순서대로 읽기):
+  1. `{프로젝트루트}/Rules/code-conventions.md` — **프로젝트 내부 코드 규칙 (최우선)**
+  2. `C:\DevelopRule\rules\details\code\code.md`
+  3. `C:\DevelopRule\rules\details\comment\comment.md`
+  4. `C:\DevelopRule\rules\details\debug\debug.md`
 
 ## 팀 통신 프로토콜
 
