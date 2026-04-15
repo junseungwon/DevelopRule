@@ -18,6 +18,7 @@ description: "에이전트 허브. 모든 작업 요청의 진입점. 요청을 
 | `researcher` | 자료 조사·정보 수집 | 조사해줘, 찾아봐줘, 비교해줘, 레퍼런스 |
 | `code-reviewer` | 코드 리뷰·버그 탐지 | 코드 리뷰, 검토해줘, 버그 찾아줘 |
 | `documenter` | 문서 작성·정리 (Haiku) | 문서 만들어줘, 정리해줘, README, 요약 |
+| `visualizer` | HTML 시각화 자료 제작 | 시각화해줘, 다이어그램 만들어줘, HTML로 그려줘, 차트 |
 | `git-push` | Git 커밋·푸시 | 깃 푸시, 커밋 해줘, 올려줘, push |
 
 ### Unity (프로젝트 전용)
