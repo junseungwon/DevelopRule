@@ -6,3 +6,4 @@
 - `C:\DevelopRule\rules\details\code\code.md` — 코드 작성 규칙 (스타일, 클래스 구조, 패턴)
 - `C:\DevelopRule\rules\details\comment\comment.md` — 주석 작성 규칙 (함수, 변수, region)
 - `C:\DevelopRule\rules\details\debug\debug.md` — 디버그 규칙 (JellyMolly 전용)
+- `C:\DevelopRule\rules\details\folder-structure.md` — 폴더 생성 규칙 (숫자 접두사 컨벤션, 5단계 Docs 구조)
