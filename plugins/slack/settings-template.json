@@ -1,0 +1,41 @@
+{
+  "slack": {
+    "enabled": true,
+    "bot_token": "xoxb-YOUR-BOT-TOKEN-HERE",
+
+    "channels": {
+      "default": "#claude-code",
+      "notifications": "#claude-notifications",
+      "github": "#github-events",
+      "rule_developer": "#rule-developer"
+    },
+
+    "features": {
+      "auto_notifications": true,
+      "github_integration": true,
+      "rule_developer_share": true,
+      "file_analysis": true,
+      "slash_commands": true,
+      "mention_response": true,
+      "thread_management": true
+    },
+
+    "message_format": "markdown",
+    "thread_replies": true,
+    "file_uploads": true,
+    "reactions": true,
+
+    "notifications": {
+      "task_complete": true,
+      "task_error": true,
+      "github_events": true,
+      "rule_developer": true
+    },
+
+    "github": {
+      "repo": "owner/repo",
+      "events": ["push", "pull_request", "issues"],
+      "branches": ["main", "develop"]
+    }
+  }
+}
