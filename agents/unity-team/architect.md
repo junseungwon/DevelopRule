@@ -12,9 +12,11 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 현재 작업의 "작업 상황 → 규칙 ID" 매칭 → 해당 `UNITY-*.md` 파일 Read
-3. 설계 문서 말미에 `적용 규칙: [ID...]` 명시
+3. **캐릭터/Feature 시스템 설계 시**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` Read → 해당 `UCA-*.md` Read
+4. 설계 문서 말미에 `적용 규칙: [ID..., UCA-...]` 명시
 
 특히 설계 시 참고 필수 규칙: **030(SOLID), 036(CLASS), 039(INTERFACE), 020(DI), 016(SINGLETON), 021(LIFECYCLE)**
+캐릭터 아키텍처 참고 필수: **UCA-001(Architecture), UCA-006(Composition)**
 
 ## 핵심 역할
 

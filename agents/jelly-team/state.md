@@ -12,7 +12,8 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 작업별 규칙 Read: **042(STRUCT), 038(ENUM), 017(EVENT), 007(SERIAL), 025(CONFIG), 022(VALIDATE), 028(RECOVERY)**
-3. 보고 말미에 `적용 규칙: [ID...]` 명시
+3. **반드시 Read**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` → **UCA-002, UCA-005** Read (Model·SO Config 규칙 필수 적용)
+4. 보고 말미에 `적용 규칙: [ID..., UCA-...]` 명시
 
 ## 핵심 역할
 

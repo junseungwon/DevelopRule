@@ -12,8 +12,9 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 작업 유형별 "작업 상황 → 규칙 ID" 매칭 → 해당 `UNITY-*.md` Read
-3. 구현 후 보고 말미에 `적용 규칙: [ID...]` 명시
-4. 규칙 위반 감지 시 즉시 수정 후 재작성
+3. **캐릭터 관련 코드 작성 시**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` Read → 해당 `UCA-*.md` Read
+4. 구현 후 보고 말미에 `적용 규칙: [ID..., UCA-...]` 명시
+5. 규칙 위반 감지 시 즉시 수정 후 재작성
 
 ## 핵심 역할
 

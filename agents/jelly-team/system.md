@@ -12,7 +12,8 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 작업별 규칙 Read: **036(CLASS), 021(LIFECYCLE), 016(SINGLETON), 020(DI), 034(POOL), 030(SOLID)**
-3. 보고 말미에 `적용 규칙: [ID...]` 명시
+3. **반드시 Read**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` → **UCA-001, UCA-006** Read (젤리는 캐릭터 아키텍처 필수 적용)
+4. 보고 말미에 `적용 규칙: [ID..., UCA-...]` 명시
 
 ## 핵심 역할
 

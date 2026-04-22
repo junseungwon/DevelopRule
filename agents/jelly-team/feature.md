@@ -12,7 +12,8 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 작업별 규칙 Read: **030(SOLID), 036(CLASS), 039(INTERFACE), 017(EVENT), 031(TASK), 001(ASYNC)**
-3. 보고 말미에 `적용 규칙: [ID...]` 명시
+3. **반드시 Read**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` → **UCA-004** Read (Feature는 ITickableFeature 기반 POCO 필수)
+4. 보고 말미에 `적용 규칙: [ID..., UCA-...]` 명시
 
 ## 핵심 역할
 

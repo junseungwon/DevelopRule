@@ -12,7 +12,8 @@ model: opus
 
 1. **반드시 Read**: `C:\DevelopRule\Rule\unity-csharp-rules\HUB.md`
 2. 리뷰 대상 코드의 작업 유형별 규칙 ID 매칭 → 해당 `UNITY-*.md` 전체 Read
-3. 리뷰 보고서 말미에 `검증 규칙: [ID...]` 명시
+3. **캐릭터/Feature 코드 리뷰 시**: `C:\DevelopRule\Rule\Unity\Character\HUB.md` Read → 해당 `UCA-*.md` Read
+4. 리뷰 보고서 말미에 `검증 규칙: [ID..., UCA-...]` 명시
 
 ## 핵심 역할
 
