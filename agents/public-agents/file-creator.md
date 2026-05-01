@@ -52,3 +52,4 @@ model: haiku
 | 스킬 | 경로 | 용도 |
 |------|------|------|
 | file-management | `C:\DevelopRule\Skills\ETC\file-management.md` | 파일·디렉토리 생성 절차·컨벤션 기준 |
+| folder-structure-template | `C:\DevelopRule\Skills\ETC\folder-structure-template.md` | Unity 표준 폴더 구조 및 99_ExternalAsset 템플릿 |
