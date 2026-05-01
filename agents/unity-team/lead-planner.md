@@ -39,3 +39,11 @@ model: opus
 
 - 요구사항 모호 시 → 사용자에게 최소 질문으로 확인
 - 범위 과다 시 → MVP 범위 제안 후 확정
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-planning | `C:\DevelopRule\Skills\Design\unity-planning.md` | 기능 범위·우선순위·마일스톤 기획 절차 |

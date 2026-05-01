@@ -3,7 +3,7 @@ name: git-historian
 description: git 커밋 히스토리 및 기여도 분석 전문. git log를 파싱하여 활성도, 기여자, 마일스톤을 추출한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: opus
+model: sonnet
 ---
 
 # Git Historian (git-historian)

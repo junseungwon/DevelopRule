@@ -1,7 +1,7 @@
 ---
 name: jelly-interaction
 description: "젤리 상호작용 담당 에이전트. 환경(표면 종류)·NPC(먹힘·붙음)·아이템·오브젝트와의 상호작용 규칙 구현 요청 시 사용. '젤리 NPC 상호작용', '아이템 흡수', '표면 반응' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Jelly Interaction — 젤리 상호작용 담당
@@ -49,3 +49,11 @@ model: opus
 
 - 대상 오브젝트 누락·태그 불일치 시 → 경고 로그 후 기본 반응 적용 (028 규칙)
 - 상호작용 규칙 충돌 시 → 우선순위 정의 후 보고
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

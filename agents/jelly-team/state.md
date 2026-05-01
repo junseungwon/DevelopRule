@@ -1,7 +1,7 @@
 ---
 name: jelly-state
 description: "젤리 상태·데이터 담당 에이전트. 체력·크기·색상·변이 상태 모델링, ScriptableObject 데이터, 상태 저장/복원 구현 요청 시 사용. '젤리 상태', '젤리 체력', '젤리 크기 변화', '상태 저장' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Jelly State — 젤리 상태·데이터 담당
@@ -49,3 +49,11 @@ model: opus
 
 - 비정상 값(음수 체력·크기 등) → 클램핑 후 경고 로그 (022 규칙)
 - 세이브 데이터 손상 시 → 기본 프리셋으로 복원 (028 규칙)
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

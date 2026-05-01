@@ -1,7 +1,7 @@
 ---
 name: jelly-visual
 description: "젤리 비주얼·애니메이션 담당 에이전트. 셰이더·머테리얼·파티클·메시 왜곡·표정 애니 등 젤리의 시각적 찰짐 구현 요청 시 사용. '젤리 셰이더', '젤리 표정', '왜곡 애니', '이펙트' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Jelly Visual — 젤리 비주얼·애니메이션 담당
@@ -48,3 +48,11 @@ model: opus
 
 - 셰이더 파라미터 누락 시 → 기본값 제공 후 jelly-designer와 협의
 - 퍼포먼스 이슈 시 → unity-optimizer에 위임 (LOD·배치 최적화)
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

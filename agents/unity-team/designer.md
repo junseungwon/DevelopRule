@@ -1,7 +1,7 @@
 ---
 name: unity-designer
 description: "Unity 비주얼·UX 디자인 에이전트. Inspector 구성, 애니메이션 파라미터, UI 레이아웃, 씬 구성 요소 설계 요청 시 사용. 'UI 레이아웃', 'Inspector 설정', '애니메이션 파라미터' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Unity Designer — 비주얼·UX 디자이너
@@ -50,3 +50,11 @@ model: opus
 
 - UX 시나리오 부족 시 → detail-planner에 보완 요청
 - 기술 제약 충돌 시 → architect와 협의 후 수정안 제시
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-inspector-design | `C:\DevelopRule\Skills\Design\unity-inspector-design.md` | Inspector·UI·Animator 설계 절차·표준 |

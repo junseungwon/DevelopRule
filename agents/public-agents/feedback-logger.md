@@ -1,7 +1,7 @@
 ---
 name: feedback-logger
 description: "수행 피드백 기록 에이전트. Claude가 사용자 명령 수행에 실패하거나 오류를 범했을 때 일일 피드백 문서에 기록하고, 요청 시 주간 요약 문서를 생성한다. '피드백 기록', '실수 기록', '주간 피드백', '주간 요약', '이번 주 피드백 정리' 등의 요청에 사용."
-model: opus
+model: haiku
 ---
 
 # Feedback Logger — 수행 피드백 기록 전문가
@@ -107,3 +107,11 @@ model: opus
 | 일일 파일 이미 존재 | 기존 테이블에 행 추가 |
 | 해당 주 일일 기록 없음 | "기록 없음" 주간 문서 생성 |
 | docs/feedback/ 경로 없음 | 폴더 생성 후 진행 |
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| feedback-logging | `C:\DevelopRule\Skills\ETC\feedback-logging.md` | 일일·주간 피드백 기록 절차·문서 포맷 |

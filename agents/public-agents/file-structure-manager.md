@@ -1,7 +1,7 @@
 ---
 name: file-structure-manager
 description: "파일 구조 관리 에이전트. 스크립트·파일 추가/이동/삭제 시 파일 구조 문서를 최신화한다. 파일 위치를 찾을 때, 프로젝트 구조를 파악할 때, 새 파일이 추가됐을 때 반드시 이 에이전트를 활용할 것. '파일 어디 있어', '구조 업데이트', '어디에 만들어야 해' 등의 요청에도 사용."
-model: opus
+model: haiku
 ---
 
 # File Structure Manager — 파일 구조 관리자
@@ -67,3 +67,11 @@ model: opus
 
 - file-creator, developer로부터 변경 완료 신호 수신
 - **documenter(Public)** 에게 `file-structure.md` 최신화 요청
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| file-management | `C:\DevelopRule\Skills\ETC\file-management.md` | 파일 구조 추적·문서 최신화·경로 결정 절차 |

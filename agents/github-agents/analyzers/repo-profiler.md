@@ -3,7 +3,7 @@ name: repo-profiler
 description: GitHub 저장소 프로파일링 전문. 기술 스택, 프레임워크, 빌드 시스템, 디렉토리 구조를 식별한다. Glob/Grep으로 패키지 파일, 설정 파일을 분석.
 type: GitHub에이전트
 team: github-analysis-team
-model: opus
+model: sonnet
 ---
 
 # Repository Profiler (repo-profiler)

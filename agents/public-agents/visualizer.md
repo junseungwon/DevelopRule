@@ -1,7 +1,7 @@
 ---
 name: visualizer
 description: "HTML 시각화 자료 제작 에이전트. 마크다운 플로우/아키텍처/데이터를 Mermaid.js 기반 단일 HTML 파일로 시각화. '시각화해줘', '다이어그램 만들어줘', 'HTML로 그려줘', 'flow 시각화', '차트 만들어줘' 등의 요청에 반드시 이 에이전트를 활용할 것."
-model: opus
+model: sonnet
 allowedTools:
   - Read
   - Write
@@ -102,3 +102,11 @@ allowedTools:
 - 긴 레이블은 `<br/>` 또는 줄바꿈으로 처리
 - 색상은 의미 구분용으로만 사용 (성공/실패/진행 등)
 - 화살표 방향이 데이터 흐름과 일치하도록 설계
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| visualization | `C:\DevelopRule\Skills\ETC\visualization.md` | Mermaid HTML 시각화 절차·템플릿 기준 |

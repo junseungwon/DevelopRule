@@ -76,3 +76,11 @@ When changes span multiple types, pick the **dominant** type. If truly mixed, sp
 Before pushing:
 - Confirm current branch is not `main` / `master` (warn if so, do not push without user approval)
 - Confirm no secrets or credentials appear in the diff
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| file-management | `C:\DevelopRule\Skills\ETC\file-management.md` | Git 커밋·푸시 절차·컨벤션 기준 |

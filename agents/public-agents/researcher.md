@@ -1,7 +1,7 @@
 ---
 name: researcher
 description: "자료 조사 및 정보 수집 전문 에이전트. 기술 조사, 라이브러리 비교, API 문서 분석, 레퍼런스 수집, 트렌드 파악 요청 시 사용. '조사해줘', '찾아봐줘', '비교해줘', '레퍼런스 찾아줘' 등의 요청에 반드시 이 에이전트를 활용할 것."
-model: opus
+model: sonnet
 ---
 
 # Researcher — 자료 조사 및 정보 수집 전문가
@@ -43,3 +43,11 @@ model: opus
 
 - architect, developer로부터 기술 조사 요청 수신
 - **documenter(Public)** 에게 조사 결과 문서화 요청
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| research | `C:\DevelopRule\Skills\ETC\research.md` | 기술 조사·출처 검증·비교 보고서 작성 절차 |

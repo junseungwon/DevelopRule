@@ -1,7 +1,7 @@
 ---
 name: jelly-feature
 description: "젤리 기능(능력) 담당 에이전트. 젤리의 개별 능력(점프·흡수·분열·합체·변신 등) 구현 요청 시 사용. '젤리 점프 기능', '젤리 합체', '젤리 능력 추가' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Jelly Feature — 젤리 기능(능력) 담당
@@ -49,3 +49,11 @@ model: opus
 
 - 기능 간 충돌 감지 시 → 우선순위 정의 후 보고
 - 기획 모순 시 → unity-detail-planner에 반려
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

@@ -1,7 +1,7 @@
 ---
 name: unity-qa
 description: "Unity 기능 검증 및 버그 리포트 에이전트. 구현 기능 테스트, 엣지 케이스 검증, 버그 재현·리포트 요청 시 사용. 'QA해줘', '테스트', '버그 재현', '검증' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Unity QA — 기능 검증 및 버그 리포터
@@ -49,3 +49,11 @@ model: opus
 
 - 재현 불가 시 → 환경·입력 데이터 추가 수집 요청
 - 기획과 구현 괴리 발견 시 → lead-planner·architect에 공유
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-qa-testing | `C:\DevelopRule\Skills\Dev\unity-qa-testing.md` | 테스트 케이스 작성·버그 리포트·회귀 체크 절차 |

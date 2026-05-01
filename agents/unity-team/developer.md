@@ -1,7 +1,7 @@
 ---
 name: unity-developer
 description: "Unity C# 하위 기능 개발자. 스크립트 작성, 기능 구현, 버그 수정, 리팩토링 요청 시 사용. '구현해줘', '기능 만들어줘', '버그 수정', '리팩토링' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Unity Developer — 하위 기능 개발자
@@ -50,3 +50,11 @@ model: opus
 - 설계 미비·모순 발견 시 → architect에 반려
 - 규칙 간 충돌 시 → 우선순위(critical > high > medium) 기준 적용 후 보고
 - 기존 코드 파손 우려 시 → 수정 전 영향 범위 보고
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

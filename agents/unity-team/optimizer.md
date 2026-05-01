@@ -1,7 +1,7 @@
 ---
 name: unity-optimizer
 description: "Unity 퍼포먼스 최적화 에이전트. 프로파일링 분석, 드로우콜 최적화, Update 병목 제거, 메모리 관리, GC Alloc 감소 요청 시 사용. '최적화', '프로파일링', '성능 개선', 'GC 줄여줘' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Unity Optimizer — 퍼포먼스 최적화
@@ -50,3 +50,11 @@ model: opus
 
 - 프로파일 데이터 없을 시 → 정적 분석 기반 추정 + 검증 방법 제시
 - 개선 후 성능 악화 시 → 원복 후 원인 재분석
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-optimization | `C:\DevelopRule\Skills\Dev\unity-optimization.md` | 병목 분석·GC·드로우콜·풀링 최적화 절차 |

@@ -40,3 +40,11 @@ model: haiku
 - 자료조사 에이전트(researcher)로부터 조사 결과 수신 → 문서화
 - 코드 리뷰 에이전트(code-reviewer)로부터 리뷰 결과 수신 → 정리 보고서 작성
 - 파일 생성 에이전트(file-creator)와 연계하여 문서 파일 생성
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| documentation | `C:\DevelopRule\Skills\ETC\documentation.md` | 문서 작성 절차·형식·구조화 기준 |

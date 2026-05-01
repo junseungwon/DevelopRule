@@ -1,7 +1,7 @@
 ---
 name: jelly-system
 description: "젤리 코어 시스템 담당 에이전트. 젤리 생성·소멸·라이프사이클·매니저·풀링 등 젤리의 기반 시스템 구축 요청 시 사용. '젤리 시스템 만들어줘', '젤리 매니저', '젤리 라이프사이클' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Jelly System — 젤리 코어 시스템 담당
@@ -47,3 +47,11 @@ model: opus
 
 - 기존 Character 구조와 충돌 시 → unity-architect와 협의 후 어댑터 설계
 - 풀 고갈·라이프사이클 꼬임 감지 시 → 보고 후 재설계
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-writing | `C:\DevelopRule\Skills\Dev\unity-code-writing.md` | Unity C# 코드 작성 절차·규칙 적용 기준 |

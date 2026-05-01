@@ -50,3 +50,11 @@ model: opus
 
 - 기획 모순 발견 시 → detail-planner에 재기획 요청
 - 기존 구조와 충돌 시 → 영향 범위 보고 후 재설계 제안
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-architecture-design | `C:\DevelopRule\Skills\Dev\unity-architecture-design.md` | 시스템 구조·의존성·패턴 설계 절차 |

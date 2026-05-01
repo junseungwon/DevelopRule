@@ -39,3 +39,11 @@ model: opus
 
 - 상위 스펙 불명확 시 → lead-planner에게 반려
 - 기술적 실현 불가 우려 시 → architect에 타당성 확인 요청
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-planning | `C:\DevelopRule\Skills\Design\unity-planning.md` | Feature 단위 세부 기획·엣지케이스 정의 절차 |

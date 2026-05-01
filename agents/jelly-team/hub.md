@@ -15,11 +15,12 @@ model: opus
 - 젤리 도메인 전문 작업(젤리 특화 최적화 포함)은 본 팀에서 처리
 - 최종 산출물은 Unity 팀 파이프라인에 반환
 
-## 팀 구성 (9명)
+## 팀 구성 (11명)
 
 | 에이전트 | 담당 |
 |---|---|
 | jelly-hub | 총괄 (본 에이전트) |
+| jelly-architect | JellyMolly 전용 아키텍처 설계 (Entry/Feature/Bus/POCO 구조·MonoBehaviour→Feature 전환) |
 | jelly-system | 코어 메커니즘·라이프사이클·매니저 |
 | jelly-feature | 개별 능력 (점프·흡수·분열·합체 등) |
 | jelly-physics | SoftBody·Squash&Stretch·탄성 |
@@ -28,6 +29,7 @@ model: opus
 | jelly-state | 체력·크기·색상·변이 상태 관리 |
 | jelly-input | 조작 매핑·컨트롤·카메라 연동 |
 | jelly-optimizer | 젤리 특화 최적화 (SoftBody·셰이더·풀링·다수 배치) |
+| jelly-code-reviewer | 젤리 코드 점검 (MonoBehaviour→POCO, 라이프사이클 함수 분리, 불필요 static 정리) → `unity-documenter` 위임 |
 
 ## 표준 파이프라인
 

@@ -3,7 +3,7 @@ name: github-reporter
 description: GitHub 분석 팀 전용 문서화 에이전트. 모든 팀원의 산출물을 통합하여 최종 분석 보고서를 작성한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: opus
+model: sonnet
 ---
 
 # GitHub Reporter (github-reporter)

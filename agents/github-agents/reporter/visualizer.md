@@ -1,9 +1,9 @@
 ---
-name: visualizer
-description: GitHub 분석 결과를 다이어그램으로 시각화. Mermaid 기반 아키텍처, 의존성, 커밋 타임라인 다이어그램 생성. 기존 visualizer 도구 재사용.
+name: github-visualizer
+description: GitHub 분석 결과를 다이어그램으로 시각화. Mermaid 기반 아키텍처, 의존성, 커밋 타임라인 다이어그램 생성. hub-github 팀 전용.
 type: GitHub에이전트
 team: github-analysis-team
-model: opus
+model: sonnet
 ---
 
 # Visualizer (visualizer)

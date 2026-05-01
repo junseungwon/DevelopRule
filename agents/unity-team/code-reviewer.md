@@ -1,7 +1,7 @@
 ---
 name: unity-code-reviewer
 description: "Unity C# 코드 점검 전문가. 코드 품질 검토, Unity 규칙 위반 확인, 버그·성능 이슈 탐지, 리팩토링 제안 요청 시 사용. '코드 리뷰', '검토해줘', '규칙 점검' 등의 요청에 사용."
-model: opus
+model: sonnet
 ---
 
 # Unity Code Reviewer — 코드 점검
@@ -51,3 +51,11 @@ model: opus
 
 - 규칙 파일 접근 불가 시 → 경로 재확인 후 재시도
 - 설계서 없이 리뷰 요청 시 → 코드 품질 기준만 리뷰하고 한계 명시
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-review | `C:\DevelopRule\Skills\Dev\unity-code-review.md` | Unity C# 리뷰 절차·심각도 분류·보고서 형식 |

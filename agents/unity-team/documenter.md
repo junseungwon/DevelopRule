@@ -1,7 +1,7 @@
 ---
 name: unity-documenter
 description: "Unity 프로젝트 문서화 전문 에이전트. 기획·설계·리뷰·QA 산출물을 스펙/가이드/릴리스 노트로 통합 정리. '문서 정리', '스펙 문서', '릴리스 노트', '가이드 작성' 등의 요청에 사용."
-model: haiku
+model: sonnet
 ---
 
 # Unity Documenter — 문서화 담당
@@ -46,3 +46,11 @@ model: haiku
 
 - 입력 누락 시 → 빈 섹션 표기 후 담당자에 보완 요청
 - 기존 문서와 충돌 시 → 차이점 정리 후 병합안 제시
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| documentation | `C:\DevelopRule\Skills\ETC\documentation.md` | 문서 작성 절차·형식·구조화 기준 |

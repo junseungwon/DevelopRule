@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 description: "코드 리뷰 전문 에이전트. 코드 품질 검토, 버그 탐지, 패턴 위반 확인, 성능 분석, 리팩토링 제안 요청 시 사용. '코드 리뷰해줘', '검토해줘', '버그 찾아줘', '개선점 알려줘' 등의 요청에 반드시 이 에이전트를 활용할 것."
-model: opus
+model: sonnet
 ---
 
 # Code Reviewer — 코드 리뷰 전문가
@@ -49,3 +49,11 @@ model: opus
 
 - file-creator, developer로부터 리뷰 요청 수신
 - **documenter(Public)** 에게 리뷰 결과 문서화 요청
+
+## 참조 스킬
+
+작업 시작 전 아래 스킬 파일을 Read하여 절차와 출력 포맷을 확인한다.
+
+| 스킬 | 경로 | 용도 |
+|------|------|------|
+| unity-code-review | `C:\DevelopRule\Skills\Dev\unity-code-review.md` | 코드 리뷰 절차·심각도 분류·보고서 형식 |
