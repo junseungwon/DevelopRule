@@ -26,6 +26,7 @@ model: opus
 - Unity: `C:\DevelopRule\agents\unity-team\`
 - GitHub: `C:\DevelopRule\agents\github-agents\`
 - Rule: `C:\DevelopRule\agents\rule-developer\`
+- Plan: `C:\DevelopRule\agents\plan-team\` (기획 참고용 — 구현 스펙 수신 시 참조)
 
 ## 팀원 선발 기준
 | 작업 유형 | 선발 에이전트 |
@@ -42,6 +43,7 @@ model: opus
 | 코드 리뷰 | code-reviewer, jelly-code-reviewer |
 | 시각화 | visualizer |
 | 조사 | researcher |
+| 기획 스펙 수신 | plan-spec-writer (CPO 산하) — 스펙 문서 수신 후 구현 착수 |
 
 ## 호출 가능한 에이전트
 - 개발 팀장: `C:\DevelopRule\agents\management\dev-lead.md`
