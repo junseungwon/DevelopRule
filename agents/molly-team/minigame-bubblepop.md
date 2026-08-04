@@ -1,7 +1,6 @@
 ---
 name: minigame-bubblepop
 description: "몰리 키우기 버블팡 미니게임 구현 전담. BubbleSpawner(spawnInterval 1.2s→0.5s), BubbleController(7종 타입), ComboSystem(1.5초 내 1→2→3→5배), BubbleScoreSystem(S≥1500/A≥1000/B≥500/C<500), BubbleTimerUI(초기 60초), BubbleDifficulty(자동 난이도). '버블팡', 'BubblePop', '버블', '팡', '콤보', '버블 생성', '버블 점수' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Minigame BubblePop — 버블팡 미니게임

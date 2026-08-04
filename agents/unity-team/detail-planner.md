@@ -1,7 +1,6 @@
 ---
 name: unity-detail-planner
 description: "Unity 피처 세부 기획 에이전트. 구현 조건, 스펙 문서, 엣지 케이스 정의, 동작 흐름 작성 요청 시 사용. '세부 기획', '동작 정의', '엣지케이스 정리', '상태 흐름' 등의 요청에 사용."
-model: opus
 ---
 
 # Unity Detail Planner — 세부 기획자

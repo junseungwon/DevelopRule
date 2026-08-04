@@ -1,7 +1,6 @@
 ---
 name: minigame-architect
 description: "몰리 키우기 미니게임 공통 아키텍처 설계 전담. IMiniGame 인터페이스, MiniGameManager 브릿지, 3종 미니게임 공통 진입/결과 흐름, 씬 전환 패턴(LoadSceneAsync), HeartSystem 소비·해금 레벨 검사 설계. '미니게임 구조', 'MiniGameManager', 'IMiniGame', '미니게임 진입', '씬 전환', '해금 레벨', '하트 소비', '미니게임 공통' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Minigame Architect — 미니게임 공통 아키텍처

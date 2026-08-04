@@ -1,7 +1,6 @@
 ---
 name: visualizer
 description: "HTML 시각화 자료 제작 에이전트. 마크다운 플로우/아키텍처/데이터를 Mermaid.js 기반 단일 HTML 파일로 시각화. '시각화해줘', '다이어그램 만들어줘', 'HTML로 그려줘', 'flow 시각화', '차트 만들어줘' 등의 요청에 반드시 이 에이전트를 활용할 것."
-model: sonnet
 allowedTools:
   - Read
   - Write

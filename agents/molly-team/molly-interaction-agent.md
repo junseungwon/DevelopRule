@@ -1,7 +1,6 @@
 ---
 name: molly-interaction-agent
 description: "몰리 터치 인터랙션 및 비주얼 반응 전담. InteractionSystem 4종 제스처(Tap/Drag-Pet/Hold/Shake) 감지, WobbleShader 연동, ParticleSystem 제어(하트/파리/별). '터치', '탭', '쓰다듬기', '드래그', '흔들기', 'Shake', '파티클', 'WobbleShader', '즉각 반응', '인터랙션' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Interaction Agent — 터치 인터랙션 시스템

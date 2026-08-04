@@ -3,7 +3,6 @@ name: repo-fetcher
 description: GitHub 저장소 메타데이터 수집 전문. gh CLI로 레포 정보, README, 이슈/PR 통계, 브랜치 구조를 추출한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: sonnet
 ---
 
 # Repository Fetcher (repo-fetcher)

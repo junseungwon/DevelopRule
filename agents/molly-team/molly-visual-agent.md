@@ -1,7 +1,6 @@
 ---
 name: molly-visual-agent
 description: "몰리 키우기 그래픽·비주얼 시스템 전담. WobbleShader(Vertex Shader 최적화), URP Sprite Atlas 통합, 파티클 시스템(하트/파리/별), Spine 2D 연동, Draw Call 최적화. 'WobbleShader', 'Shader', '셰이더', 'Sprite Atlas', '파티클', 'Spine', '비주얼', '그래픽', 'Draw Call', '렌더링' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Visual Agent — 그래픽·비주얼 시스템

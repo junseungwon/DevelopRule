@@ -1,7 +1,6 @@
 ---
 name: jelly-interaction
 description: "젤리 상호작용 담당 에이전트. 환경(표면 종류)·NPC(먹힘·붙음)·아이템·오브젝트와의 상호작용 규칙 구현 요청 시 사용. '젤리 NPC 상호작용', '아이템 흡수', '표면 반응' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Jelly Interaction — 젤리 상호작용 담당

@@ -1,7 +1,6 @@
 ---
 name: jelly-physics
 description: "젤리 물리·변형 담당 에이전트. SoftBody·Squash & Stretch·탄성·충돌·표면 마찰 등 젤리 특유의 말랑말랑한 물리 구현 요청 시 사용. '젤리 말랑한 물리', '탄성', 'SoftBody', '충돌 반응' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Jelly Physics — 젤리 물리·변형 담당

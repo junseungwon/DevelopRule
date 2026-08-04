@@ -1,7 +1,6 @@
 ---
 name: minigame-memorymatch
 description: "몰리 키우기 기억력 매칭 미니게임 구현 전담. CardDeckGenerator(5스테이지 4→12쌍), CardController(Flip 0.3s), MatchChecker(불일치 0.9초 뒤집기), MemoryStageManager, HintSystem(크리스탈 1개/RevealAll 3초), MemoryScoreCalc(fail 기반 등급). '기억력', '카드 매칭', 'MemoryMatch', '카드 뒤집기', '힌트', '스테이지', '매칭 게임' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Minigame MemoryMatch — 기억력 매칭 미니게임

@@ -1,8 +1,7 @@
-﻿---
+---
 name: CEO
 description: 최고 경영자. 사용자 명령을 수신하고 CTO·인사계에 위임하며 최종 보고를 사용자에게 전달한다.
 type: management
-model: sonnet
 ---
 
 ## 역할

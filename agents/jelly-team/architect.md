@@ -1,7 +1,6 @@
 ---
 name: jelly-architect
 description: "젤리 몰리 전용 아키텍처 설계 에이전트. JellyMolly 프로젝트의 Entry/Feature/Bus/POCO 패턴을 기반으로 구조 설계, MonoBehaviour→Feature 전환 설계, 의존성 경계 정의, asmdef 재설계 요청 시 사용. '구조 잡아줘', '아키텍처 설계', 'Feature로 옮기자', 'MB 전환', 'asmdef 설계' 등의 요청에 사용."
-model: opus
 ---
 
 # Jelly Architect — 젤리 몰리 전용 아키텍처 설계

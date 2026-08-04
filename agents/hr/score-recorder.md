@@ -2,7 +2,6 @@
 name: 점수 기록 담당
 description: 코드 점검 평가 점수를 파일로 기록·저장한다.
 type: hr
-model: haiku
 ---
 
 ## 시작 규칙 (필수)

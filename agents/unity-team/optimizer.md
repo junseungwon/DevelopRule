@@ -1,7 +1,6 @@
 ---
 name: unity-optimizer
 description: "Unity 퍼포먼스 최적화 에이전트. 프로파일링 분석, 드로우콜 최적화, Update 병목 제거, 메모리 관리, GC Alloc 감소 요청 시 사용. '최적화', '프로파일링', '성능 개선', 'GC 줄여줘' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Unity Optimizer — 퍼포먼스 최적화

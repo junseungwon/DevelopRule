@@ -2,7 +2,6 @@
 name: 코드 규칙 점검자
 description: 코드 규칙·컨벤션 준수 여부를 평가하고 S/A/B/C/D/E/F 점수를 산출한다.
 type: code-review
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

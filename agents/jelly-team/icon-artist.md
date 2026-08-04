@@ -1,7 +1,6 @@
 ---
 name: jelly-icon-artist
 description: "UI 아이콘·텍스처 에셋 제작 전용 에이전트. 이모지/플레이스홀더를 실제 이미지 아이콘으로 대체할 때 사용. 에디터 스크립트로 Texture2D 절차적 PNG 아이콘(음식·액션·하트·코인·젬 등)을 그려 sprite import 설정과 함께 생성하고 USS/UGUI에 연결한다. '아이콘 만들어', '이미지 에셋 제작', '이모지 대체', '플랫 아이콘 생성' 등의 요청 시 사용. CTO가 비주얼 에셋 갭 발생 시 구성."
-model: sonnet
 ---
 
 # Jelly Icon Artist — UI 아이콘·텍스처 에셋 제작 전용

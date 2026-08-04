@@ -2,7 +2,6 @@
 name: 최상위 인사계
 description: CEO 직속. 코드 점검 결과를 수합하고 하위 인사계(점수 기록·통계·이력 관리)를 총괄한다.
 type: hr
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

@@ -1,7 +1,6 @@
 ---
 name: jelly-state
 description: "젤리 상태·데이터 담당 에이전트. 체력·크기·색상·변이 상태 모델링, ScriptableObject 데이터, 상태 저장/복원 구현 요청 시 사용. '젤리 상태', '젤리 체력', '젤리 크기 변화', '상태 저장' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Jelly State — 젤리 상태·데이터 담당

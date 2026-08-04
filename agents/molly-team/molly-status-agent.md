@@ -1,7 +1,6 @@
 ---
 name: molly-status-agent
 description: "몰리 스탯 및 돌봄 시스템 전담. StatusSystem 4가지 스탯(Hunger/Happiness/Cleanliness/Fatigue) 실시간 감소·회복, 오프라인 배치 계산(최대 8시간), CareSystem 3종 돌봄 액션(Feed/Bath/Sleep), 임계값 경고 이벤트 발행. 'StatusSystem', 'CareSystem', '배고픔', '행복도', '스탯 감소', '오프라인 케어', 'Feed', 'Bath', 'Sleep' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Status Agent — 스탯 및 돌봄 시스템

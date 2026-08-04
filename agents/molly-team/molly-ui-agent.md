@@ -1,7 +1,6 @@
 ---
 name: molly-ui-agent
 description: "몰리 키우기 UI 전체 전담. MainHomeUI, MiniGameUI, ShopUI, DOTween 트랜지션, HUD(재화 표시), 팝업 시스템, 상점 오버레이(Additive Overlay). 'UI', '화면', '버튼', 'HUD', '팝업', '상점', 'ShopUI', 'DOTween', '재화 표시', 'MainHomeUI', 'MiniGameUI' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly UI Agent — UI 시스템

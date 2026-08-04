@@ -1,7 +1,6 @@
 ---
 name: unity-file-structure-manager
 description: "Unity 파일 구조 관리 에이전트. 스크립트·리소스·씬의 배치 경로 결정, 구조 문서 최신화, 이동/삭제 관리. '어디에 만들어야 해', '구조 정리', '파일 이동' 등의 요청에 사용."
-model: haiku
 ---
 
 # Unity File Structure Manager — 파일 구조 관리자

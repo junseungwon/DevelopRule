@@ -3,7 +3,6 @@ name: code-analyzer
 description: 코드 품질 및 패턴 분석 전문. Grep/Glob으로 안티패턴, 복잡한 함수, 중복 코드, 성능 이슈를 식별한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: sonnet
 ---
 
 # Code Analyzer (code-analyzer)

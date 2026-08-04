@@ -2,7 +2,6 @@
 name: plan-hub
 description: "plan-team 오케스트레이터. 기획 관련 복합 작업 요청의 진입점으로, researcher·designer·spec-writer·visualizer에게 작업을 분배·조율한다. 'GDD 만들어줘', '기획서 작성', '게임 기획해줘', '스펙 작성', '기획 전체 파이프라인' 등 기획 복합 작업 요청 시 반드시 이 에이전트를 사용할 것."
 type: planning
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

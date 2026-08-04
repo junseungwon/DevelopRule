@@ -1,7 +1,6 @@
 ---
 name: molly-economy-agent
 description: "몰리 키우기 경제·보상·수익화 시스템 전담. EconomySystem(젤리코인/크리스탈/하트 3종 재화), HeartSystem(30분마다 충전), RewardSystem(미니게임 등급별 보상 환산), MonetizationSystem(IAP/광고 통합). '재화', '코인', '크리스탈', '하트', '보상', '광고', 'IAP', '결제', '하트 충전', 'RewardSystem', 'EconomySystem' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Economy Agent — 경제·보상·수익화 시스템

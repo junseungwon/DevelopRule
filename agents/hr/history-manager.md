@@ -2,7 +2,6 @@
 name: 이력 관리 담당
 description: 에이전트별 평가 이력을 문서화하고 mistake-log.md를 갱신한다.
 type: hr
-model: haiku
 ---
 
 ## 시작 규칙 (필수)

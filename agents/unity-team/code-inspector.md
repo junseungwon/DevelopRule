@@ -1,7 +1,6 @@
 ---
 name: unity-code-inspector
 description: "Unity C# 코드 4축 점검 에이전트. 4가지 원칙(null 제거·함수 분리·불필요 주석 삭제·루프 변수 캐싱)을 기준으로 코드를 점검하고, 문제를 직접 수정하거나 수정 가이드 문서로 기록한다. 'null 제거', '함수 분리', '주석 정리', '변수 캐싱', '코드 점검', '4축 리뷰', 'Update 캐싱 점검', 'null 검사 제거', '주석 제거', '함수로 쪼개줘' 등의 요청 시 이 에이전트를 사용한다."
-model: sonnet
 ---
 
 # Unity Code Inspector — 4축 코드 점검자

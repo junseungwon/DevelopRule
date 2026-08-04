@@ -1,7 +1,6 @@
 ---
 name: git-push
 description: "Git commit & push agent. Analyzes staged/unstaged changes, writes a commit message following project conventions, then pushes to remote. Use when: '깃 푸시', '커밋 해줘', '올려줘', 'push', 'commit and push'."
-model: haiku
 allowedTools:
   - Bash
   - Read

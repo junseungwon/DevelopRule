@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code 하네스 에이전트 구조도</title>
+<style>
+:root{
+  --bg:#f4f6f9; --card:#ffffff; --text:#1d2433; --muted:#5b6472;
+  --border:#d5dbe4; --soft:#eef1f6; --mono:Consolas,"Courier New",monospace;
+
+  --dev:#2563eb;    --dev-bg:#e9f0fe;   --dev-dark:#1d4fc4;
+  --plan:#189a4a;   --plan-bg:#e5f5ec;  --plan-dark:#12813d;
+  --hr:#e07b00;     --hr-bg:#fdf0de;    --hr-dark:#bf6900;
+  --review:#c2274b; --review-bg:#fbe9ed;--review-dark:#a31e3e;
+  --mgmt:#37415c;   --mgmt-bg:#e9ecf3;  --mgmt-dark:#2b3349;
+  --hook:#111827;   --hook-bg:#1f2937;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141821; --card:#1e2430; --text:#e6eaf2; --muted:#9aa4b4;
+    --border:#3a4356; --soft:#262d3c;
+    --dev:#5b8bf5;    --dev-bg:#1e2a44;
+    --plan:#3fbf74;   --plan-bg:#1b3226;
+    --hr:#f0a13c;     --hr-bg:#3a2c17;
+    --review:#e46a86; --review-bg:#3b202a;
+    --mgmt:#93a0c4;   --mgmt-bg:#272e42;
+    --hook:#0c101a;   --hook-bg:#0f1523;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Malgun Gothic","Apple SD Gothic Neo","Segoe UI",sans-serif;
+  font-size:15px; line-height:1.55; padding:28px 16px 40px;
+}
+.wrap{max-width:1400px;margin:0 auto}
+
+/* ---------- 헤더 ---------- */
+.doc-head{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px 26px; margin-bottom:26px;
+}
+.doc-head h1{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:8px}
+.doc-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.8rem;color:var(--muted)}
+.doc-meta b{color:var(--text);font-weight:600}
+.doc-meta code{font-family:var(--mono);font-size:.76rem;background:var(--soft);
+  border:1px solid var(--border);border-radius:5px;padding:1px 6px;word-break:break-all}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.badge{font-size:.74rem;font-weight:600;border-radius:99px;padding:3px 11px;
+  background:var(--soft);border:1px solid var(--border);color:var(--muted)}
+.toc{margin-top:12px;font-size:.82rem}
+.toc a{color:var(--dev);text-decoration:none;margin-right:16px}
+.toc a:hover{text-decoration:underline}
+
+/* ---------- 섹션 공통 ---------- */
+section{margin-bottom:36px}
+h2{font-size:1.18rem;letter-spacing:-.01em;margin-bottom:6px;
+  padding-left:11px;border-left:5px solid var(--mgmt)}
+.sec-desc{font-size:.84rem;color:var(--muted);margin-bottom:16px}
+
+/* ---------- 범례 ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:10px 16px;margin-bottom:18px;font-size:.79rem}
+.lg{display:inline-flex;align-items:center;gap:7px;color:var(--muted)}
+.sw{display:inline-block;width:26px;height:0;border-top:3px solid var(--border)}
+.sw.dev{border-color:var(--dev)} .sw.plan{border-color:var(--plan)}
+.sw.hr{border-color:var(--hr)}  .sw.review{border-color:var(--review)}
+.sw.dash{border-top:3px dashed var(--hr)}
+
+/* ---------- 조직도 트리 ---------- */
+.orgchart{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:26px 14px 30px;overflow-x:auto;
+}
+ul.tree, .tree ul{
+  display:flex;justify-content:center;align-items:flex-start;
+  list-style:none;margin:0;padding:0;
+}
+.tree ul{padding-top:26px;position:relative}
+ul.tree{padding-top:0}
+.tree li{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;padding:26px 7px 0;
+}
+.tree li::before,.tree li::after{
+  content:"";position:absolute;top:0;right:50%;
+  width:50%;height:26px;border-top:2px solid var(--c,var(--border));
+}
+.tree li::after{right:auto;left:50%;border-left:2px solid var(--c,var(--border))}
+.tree li:only-child::before,.tree li:only-child::after{display:none}
+.tree li:only-child{padding-top:0}
+.tree li:first-child::before,.tree li:last-child::after{border:0 none}
+.tree li:last-child::before{border-right:2px solid var(--c,var(--border));border-radius:0 9px 0 0}
+.tree li:first-child::after{border-radius:9px 0 0 0}
+.tree ul::before{
+  content:"";position:absolute;top:0;left:50%;margin-left:-1px;
+  width:0;height:26px;border-left:2px solid var(--c,var(--border));
+}
+ul.tree::before{display:none}
+
+.b-dev{--c:var(--dev)} .b-plan{--c:var(--plan)}
+.b-hr{--c:var(--hr)}   .b-review{--c:var(--review)}
+
+/* 노드 */
+.tree .node{
+  position:relative;background:var(--card);
+  border:1.5px solid var(--border);border-radius:10px;
+  padding:9px 12px;min-width:106px;max-width:216px;text-align:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.10);
+}
+.tree li li > .node::before{ /* 하향 화살촉 */
+  content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-bottom:0;
+  border-top-color:var(--c,var(--border));
+}
+.node .nm{display:block;font-weight:700;font-size:.86rem;letter-spacing:-.01em}
+.node .sub{display:block;font-weight:600;font-size:.7rem;color:var(--muted);margin-top:1px}
+.node .rl{display:block;font-size:.7rem;color:var(--muted);margin-top:5px;line-height:1.45}
+.tag{display:inline-block;font-size:.64rem;font-weight:700;color:#fff;
+  border-radius:99px;padding:1px 9px;margin-bottom:6px}
+.t-dev{background:var(--dev-dark)} .t-plan{background:var(--plan-dark)}
+.t-hr{background:var(--hr-dark)}   .t-review{background:var(--review-dark)}
+.t-mgmt{background:var(--mgmt-dark)}
+@media (prefers-color-scheme: dark){
+  .t-dev{background:var(--dev);color:#0d1220} .t-plan{background:var(--plan);color:#0d1220}
+  .t-hr{background:var(--hr);color:#0d1220}   .t-review{background:var(--review);color:#0d1220}
+  .t-mgmt{background:var(--mgmt);color:#0d1220}
+}
+.n-hook{background:var(--hook-bg);border-color:var(--hook);max-width:330px}
+.n-hook .nm{color:#f3f4f6}.n-hook .rl{color:#c3cbd8}
+.n-mgmt{border-color:var(--mgmt);background:var(--mgmt-bg)}
+.n-dev{border-color:var(--dev);background:var(--dev-bg)}
+.n-plan{border-color:var(--plan);background:var(--plan-bg)}
+.n-hr{border-color:var(--hr);background:var(--hr-bg)}
+.n-review{border-color:var(--review);background:var(--review-bg)}
+.n-group .rl{font-family:var(--mono);font-size:.68rem}
+.chip-dash{display:inline-block;margin-top:6px;font-size:.63rem;font-weight:600;
+  color:var(--hr);border:1.5px dashed var(--hr);border-radius:7px;padding:2px 7px}
+
+/* ---------- 등급 보고 경로(점선) 스트립 ---------- */
+.report-flow{
+  margin-top:20px;border-top:1px dashed var(--border);padding-top:18px;
+  display:flex;justify-content:center;align-items:center;gap:4px;flex-wrap:wrap;
+}
+.rf-src{background:var(--review-bg);border:1.5px solid var(--review);border-radius:10px;
+  padding:9px 14px;text-align:center}
+.rf-src .nm{display:block;font-weight:700;font-size:.82rem}
+.rf-src .rl{display:block;font-size:.68rem;color:var(--muted);margin-top:3px}
+.rf-lanes{display:flex;flex-direction:column;gap:14px}
+.rf-lane{display:flex;align-items:center}
+.rf-line{position:relative;width:160px;height:0;margin:0 4px}
+.rf-line.solid{border-top:2px solid var(--review)}
+.rf-line.dashed{border-top:2px dashed var(--hr)}
+.rf-line::after{content:"";position:absolute;right:-2px;top:-6px;
+  border:5px solid transparent;border-right:0}
+.rf-line.solid::after{border-left-color:var(--review)}
+.rf-line.dashed::after{border-left-color:var(--hr)}
+.rf-line .cap{position:absolute;left:50%;top:-20px;transform:translateX(-50%);
+  white-space:nowrap;font-size:.64rem;color:var(--muted)}
+.rf-dst{border-radius:9px;padding:7px 13px;font-weight:700;font-size:.8rem;text-align:center}
+.rf-dst.mgmt{background:var(--mgmt-bg);border:1.5px solid var(--mgmt)}
+.rf-dst.hr{background:var(--hr-bg);border:1.5px dashed var(--hr)}
+.rf-dst .sub{display:block;font-weight:500;font-size:.65rem;color:var(--muted)}
+
+/* ---------- 팀 카드 ---------- */
+.teams{columns:3 380px;column-gap:18px}
+.team-card{
+  break-inside:avoid;background:var(--card);border:1px solid var(--border);
+  border-radius:13px;overflow:hidden;margin:0 0 18px;
+  display:inline-block;width:100%;
+}
+.team-head{display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding:10px 15px;color:#fff}
+.team-head h3{font-size:.95rem;letter-spacing:-.01em}
+.team-head .line-name{display:block;font-size:.64rem;font-weight:500;opacity:.85;margin-top:1px}
+.cnt{flex:none;font-size:.72rem;font-weight:700;background:rgba(255,255,255,.22);
+  border-radius:99px;padding:2px 10px;white-space:nowrap}
+.th-mgmt{background:linear-gradient(120deg,#2b3349,#42507a)}
+.th-dev{background:linear-gradient(120deg,#1d4fc4,#3b7af0)}
+.th-plan{background:linear-gradient(120deg,#12813d,#27b45e)}
+.th-hr{background:linear-gradient(120deg,#bf6900,#f09a2c)}
+.th-review{background:linear-gradient(120deg,#a31e3e,#d6486b)}
+.team-path{font-family:var(--mono);font-size:.68rem;color:var(--muted);
+  background:var(--soft);padding:6px 15px;border-bottom:1px solid var(--border);
+  word-break:break-all}
+.member{display:flex;gap:10px;padding:7px 15px;border-top:1px dashed var(--border);
+  align-items:baseline}
+.member:first-of-type{border-top:0}
+.m-name{flex:0 0 172px;font-weight:600;font-size:.77rem;word-break:break-all;letter-spacing:-.01em}
+.m-role{flex:1;font-size:.73rem;color:var(--muted);line-height:1.5}
+.team-note{padding:8px 15px 11px;font-size:.69rem;color:var(--muted);
+  border-top:1px dashed var(--border);background:var(--soft)}
+.team-note code{font-family:var(--mono);font-size:.66rem}
+@media (max-width:560px){
+  .member{flex-direction:column;gap:1px}
+  .m-name{flex:auto}
+}
+
+/* ---------- 푸터 ---------- */
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--border);
+  font-size:.74rem;color:var(--muted)}
+footer code{font-family:var(--mono);font-size:.7rem;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc-head">
+    <h1>Claude Code 하네스 에이전트 구조도</h1>
+    <div class="doc-meta">
+      <span><b>작성일</b> 2026-08-03</span>
+      <span><b>원천 문서</b> <code>C:\DevelopRule\docs\2026-08-03-harness-system-overview.md</code> (2장 지휘 체계 · 3장 에이전트 조직)</span>
+    </div>
+    <div class="badges">
+      <span class="badge">지휘 라인 4개</span>
+      <span class="badge">팀 11개</span>
+      <span class="badge">에이전트 정의 75건 (71 + rule-developer 4단계)</span>
+      <span class="badge">정의 원본 C:\DevelopRule\agents\ (~/.claude/agents Junction)</span>
+    </div>
+    <nav class="toc">
+      <a href="#sec-chain">1. 지휘 계통도</a>
+      <a href="#sec-teams">2. 팀별 소속 에이전트</a>
+    </nav>
+  </header>
+
+  <!-- ================= 섹션 1 : 지휘 계통도 ================= -->
+  <section id="sec-chain">
+    <h2>1. 지휘 계통도</h2>
+    <p class="sec-desc">
+      모든 요청은 UserPromptSubmit 훅(RULE 0)이 강제하는 CEO 우선 소환으로 시작하며(예외: 단순 조회),
+      CEO 진입점 아래로 개발·기획·인사·점검 4개 라인이 분기한다.
+    </p>
+
+    <div class="legend">
+      <span class="lg"><i class="sw dev"></i>개발 라인 (CEO → CTO → dev-lead)</span>
+      <span class="lg"><i class="sw plan"></i>기획 라인 (CEO → CPO → plan-hub)</span>
+      <span class="lg"><i class="sw hr"></i>인사 라인 (CEO → hr-chief)</span>
+      <span class="lg"><i class="sw review"></i>점검 라인 (CTO → code-review-lead)</span>
+      <span class="lg"><i class="sw dash"></i>점선 = 등급 결과 보고 (code-review-lead → hr-chief)</span>
+    </div>
+
+    <div class="orgchart">
+      <ul class="tree">
+        <li>
+          <div class="node n-hook">
+            <span class="nm">RULE 0 훅 — UserPromptSubmit</span>
+            <span class="rl">모든 사용자 프롬프트에 컨텍스트 주입 : CEO 에이전트 우선 소환 강제<br>(예외 : 단순 조회 질문)</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node n-mgmt">
+                <span class="tag t-mgmt">진입점</span>
+                <span class="nm">CEO</span>
+                <span class="rl">사용자 명령 수신 · CTO / CPO / 인사계 위임 · 최종 보고<br>(직접 실행하지 않음)</span>
+              </div>
+              <ul>
+                <!-- (a)(d) 개발 + 점검 라인 : CTO -->
+                <li class="b-dev">
+                  <div class="node n-dev">
+                    <span class="tag t-dev">개발 라인</span>
+                    <span class="nm">CTO</span>
+                    <span class="rl">기술 총괄 · 시스템 설계 주도 · 팀원 선발과 dev-lead 배치 · 완료 후 코드 점검 지시</span>
+                  </div>
+                  <ul>
+                    <li class="b-dev">
+                      <div class="node n-dev">
+                        <span class="nm">dev-lead</span>
+                        <span class="sub">개발 팀장</span>
+                        <span class="rl">개발 팀 인솔·관리 · CTO에게 태스크와 팀원을 받아 실지휘 · 완료 보고</span>
+                      </div>
+                      <ul>
+                        <li class="b-dev">
+                          <div class="node n-dev n-group">
+                            <span class="nm">개발 팀원</span>
+                            <span class="rl">jelly-team / unity-team /<br>molly-team / public-agents /<br>github-agents 등</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="b-review">
+                      <div class="node n-review">
+                        <span class="tag t-review">점검 라인</span>
+                        <span class="nm">code-review-lead</span>
+                        <span class="sub">코드 점검자 팀장</span>
+                        <span class="rl">점검자 배치 · S~F 등급 수합</span>
+                        <span class="chip-dash">등급 결과 : CTO + hr-chief 양쪽 보고</span>
+                      </div>
+                      <ul>
+                        <li class="b-review">
+                          <div class="node n-review">
+                            <span class="nm">rules-reviewer</span>
+                            <span class="rl">코드 규칙·컨벤션 준수 평가, S~F 점수 산출</span>
+                          </div>
+                        </li>
+                        <li class="b-review">
+                          <div class="node n-review">
+                            <span class="nm">optimization-reviewer</span>
+                            <span class="rl">성능·최적화 영역 평가, S~F 점수 산출</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <!-- (b) 기획 라인 : CPO -->
+                <li class="b-plan">
+                  <div class="node n-plan">
+                    <span class="tag t-plan">기획 라인</span>
+                    <span class="nm">CPO</span>
+                    <span class="rl">최고 기획 책임자 · CEO 직속, CTO 동급 · 기획 명령을 plan-team에 위임</span>
+                  </div>
+                  <ul>
+                    <li class="b-plan">
+                      <div class="node n-plan">
+                        <span class="nm">plan-hub</span>
+                        <span class="rl">plan-team 오케스트레이터 · 기획 복합 작업 진입점, 팀원 분배·조율</span>
+                      </div>
+                      <ul>
+                        <li class="b-plan">
+                          <div class="node n-plan">
+                            <span class="nm">plan-researcher</span>
+                            <span class="rl">레퍼런스·시장 조사, 경쟁작·트렌드 분석</span>
+                          </div>
+                        </li>
+                        <li class="b-plan">
+                          <div class="node n-plan">
+                            <span class="nm">plan-designer</span>
+                            <span class="rl">코어 루프·메카닉·GDD 초안 설계</span>
+                          </div>
+                        </li>
+                        <li class="b-plan">
+                          <div class="node n-plan">
+                            <span class="nm">plan-spec-writer</span>
+                            <span class="rl">기능·시스템 스펙, 요구사항 명세</span>
+                          </div>
+                        </li>
+                        <li class="b-plan">
+                          <div class="node n-plan">
+                            <span class="nm">plan-visualizer</span>
+                            <span class="rl">GDD·스펙·플로우 단일 HTML 시각화</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <!-- (c) 인사 라인 : hr-chief -->
+                <li class="b-hr">
+                  <div class="node n-hr">
+                    <span class="tag t-hr">인사 라인</span>
+                    <span class="nm">hr-chief</span>
+                    <span class="sub">최상위 인사계</span>
+                    <span class="rl">CEO 직속 · 코드 점검 결과 수합 · 하위 인사계 총괄</span>
+                  </div>
+                  <ul>
+                    <li class="b-hr">
+                      <div class="node n-hr">
+                        <span class="nm">score-recorder</span>
+                        <span class="rl">점검 평가 점수를 파일로 기록·저장</span>
+                      </div>
+                    </li>
+                    <li class="b-hr">
+                      <div class="node n-hr">
+                        <span class="nm">statistics</span>
+                        <span class="rl">에이전트별·기간별 점수 분석, 통계 리포트</span>
+                      </div>
+                    </li>
+                    <li class="b-hr">
+                      <div class="node n-hr">
+                        <span class="nm">history-manager</span>
+                        <span class="rl">평가 이력 문서화, mistake-log.md 갱신</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- 등급 결과 보고 경로 -->
+      <div class="report-flow">
+        <div class="rf-src">
+          <span class="nm">code-review-lead</span>
+          <span class="rl">개발 완료 후 S~F 7등급 품질 평가 수합</span>
+        </div>
+        <div class="rf-lanes">
+          <div class="rf-lane">
+            <span class="rf-line solid"><span class="cap">지휘 계통 보고 (실선)</span></span>
+            <span class="rf-dst mgmt">CTO<span class="sub">점검 지시자</span></span>
+          </div>
+          <div class="rf-lane">
+            <span class="rf-line dashed"><span class="cap">등급 결과 전달 (점선)</span></span>
+            <span class="rf-dst hr">hr-chief<span class="sub">점수 기록·통계·이력 반영</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 섹션 2 : 팀별 소속 에이전트 ================= -->
+  <section id="sec-teams">
+    <h2>2. 팀별 소속 에이전트 (11개 팀)</h2>
+    <p class="sec-desc">
+      정의 원본은 <code style="font-family:var(--mono);font-size:.78rem">C:\DevelopRule\agents\</code> 이며,
+      <code style="font-family:var(--mono);font-size:.78rem">~/.claude/agents</code> 는 이 폴더로의 NTFS Junction이라 실물은 단일하다.
+      카드 헤더 색은 섹션 1의 지휘 라인 색과 일치한다.
+    </p>
+
+    <div class="teams">
+
+      <!-- management -->
+      <div class="team-card">
+        <div class="team-head th-mgmt">
+          <h3>management<span class="line-name">지휘부 — 4개 라인 공통</span></h3>
+          <span class="cnt">5명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\management\</div>
+        <div class="member"><span class="m-name">CEO</span><span class="m-role">사용자 명령 수신, CTO·CPO·인사계 위임, 최종 보고. 직접 실행하지 않음</span></div>
+        <div class="member"><span class="m-name">CTO</span><span class="m-role">기술 총괄. 시스템 설계 주도, 팀원 선발·dev-lead 배치, 완료 후 코드 점검 지시</span></div>
+        <div class="member"><span class="m-name">CPO</span><span class="m-role">최고 기획 책임자. CEO 직속·CTO 동급. 기획 명령을 plan-team에 위임</span></div>
+        <div class="member"><span class="m-name">dev-lead</span><span class="m-role">개발 팀장. 개발 팀 인솔·관리, CTO에게 태스크·팀원을 받아 실지휘, 완료 보고</span></div>
+        <div class="member"><span class="m-name">code-review-lead</span><span class="m-role">코드 점검자 팀장. 점검자 배치, S~F 등급 수합, CTO + 인사계 보고</span></div>
+      </div>
+
+      <!-- hr -->
+      <div class="team-card">
+        <div class="team-head th-hr">
+          <h3>hr<span class="line-name">인사 라인</span></h3>
+          <span class="cnt">4명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\hr\</div>
+        <div class="member"><span class="m-name">hr-chief</span><span class="m-role">최상위 인사계. CEO 직속, 코드 점검 결과 수합, 하위 인사계 총괄</span></div>
+        <div class="member"><span class="m-name">score-recorder</span><span class="m-role">코드 점검 평가 점수를 파일로 기록·저장</span></div>
+        <div class="member"><span class="m-name">statistics</span><span class="m-role">에이전트별·기간별 평가 점수 분석, 통계 리포트 산출</span></div>
+        <div class="member"><span class="m-name">history-manager</span><span class="m-role">에이전트별 평가 이력 문서화, mistake-log.md 갱신</span></div>
+      </div>
+
+      <!-- code-review -->
+      <div class="team-card">
+        <div class="team-head th-review">
+          <h3>code-review<span class="line-name">점검 라인</span></h3>
+          <span class="cnt">2명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\code-review\</div>
+        <div class="member"><span class="m-name">rules-reviewer</span><span class="m-role">코드 규칙·컨벤션 준수 평가, S~F 점수 산출</span></div>
+        <div class="member"><span class="m-name">optimization-reviewer</span><span class="m-role">성능·최적화 영역 평가, S~F 점수 산출</span></div>
+      </div>
+
+      <!-- jelly-team -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>jelly-team<span class="line-name">개발 라인</span></h3>
+          <span class="cnt">12명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\jelly-team\</div>
+        <div class="member"><span class="m-name">jelly-hub</span><span class="m-role">젤리 캐릭터 총괄. 젤리 관련 작업 진입점, 담당자 분배·조율</span></div>
+        <div class="member"><span class="m-name">jelly-architect</span><span class="m-role">Entry/Feature/Bus/POCO 패턴 구조 설계, MonoBehaviour→Feature 전환 설계</span></div>
+        <div class="member"><span class="m-name">jelly-code-reviewer</span><span class="m-role">젤리 몰리 전용 5축 코드 점검. 직접 수정 없이 unity-documenter로 가이드 문서화</span></div>
+        <div class="member"><span class="m-name">jelly-feature</span><span class="m-role">점프·흡수·분열·합체·변신 등 젤리 개별 능력 구현</span></div>
+        <div class="member"><span class="m-name">jelly-physics</span><span class="m-role">SoftBody·Squash &amp; Stretch·탄성·충돌·표면 마찰 등 젤리 물리</span></div>
+        <div class="member"><span class="m-name">jelly-input</span><span class="m-role">조작 매핑, Input System 바인딩, 능력 발동 입력, 카메라 연동</span></div>
+        <div class="member"><span class="m-name">jelly-interaction</span><span class="m-role">환경·NPC·아이템·오브젝트 상호작용 규칙</span></div>
+        <div class="member"><span class="m-name">jelly-state</span><span class="m-role">체력·크기·색상·변이 상태 모델링, ScriptableObject 데이터, 상태 저장/복원</span></div>
+        <div class="member"><span class="m-name">jelly-system</span><span class="m-role">젤리 생성·소멸·라이프사이클·매니저·풀링 기반 시스템</span></div>
+        <div class="member"><span class="m-name">jelly-visual</span><span class="m-role">셰이더·머테리얼·파티클·메시 왜곡·표정 애니메이션</span></div>
+        <div class="member"><span class="m-name">jelly-optimizer</span><span class="m-role">SoftBody 변형·셰이더·MaterialPropertyBlock·풀링·다수 배치 등 젤리 특화 최적화</span></div>
+        <div class="member"><span class="m-name">jelly-icon-artist</span><span class="m-role">에디터 스크립트로 절차적 PNG 아이콘 생성, sprite import 설정, USS/UGUI 연결</span></div>
+      </div>
+
+      <!-- unity-team -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>unity-team<span class="line-name">개발 라인</span></h3>
+          <span class="cnt">15명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\unity-team\</div>
+        <div class="member"><span class="m-name">unity-hub</span><span class="m-role">Unity 개발팀 총괄. 요청 분석 후 기획·개발·QA·최적화·지원 팀원에 분배</span></div>
+        <div class="member"><span class="m-name">unity-architect</span><span class="m-role">시스템 구조·상태 머신·패턴·의존성·모듈 분리 설계</span></div>
+        <div class="member"><span class="m-name">unity-developer</span><span class="m-role">C# 스크립트 작성, 기능 구현, 버그 수정, 리팩토링</span></div>
+        <div class="member"><span class="m-name">unity-code-reviewer</span><span class="m-role">코드 품질 검토, Unity 규칙 위반·버그·성능 이슈 탐지</span></div>
+        <div class="member"><span class="m-name">unity-code-inspector</span><span class="m-role">4축 점검 (null 제거·함수 분리·불필요 주석 삭제·루프 변수 캐싱)</span></div>
+        <div class="member"><span class="m-name">unity-optimizer</span><span class="m-role">프로파일링, 드로우콜 최적화, Update 병목 제거, GC Alloc 감소</span></div>
+        <div class="member"><span class="m-name">unity-qa</span><span class="m-role">기능 테스트, 엣지 케이스 검증, 버그 재현·리포트</span></div>
+        <div class="member"><span class="m-name">unity-designer</span><span class="m-role">Inspector 구성, 애니메이션 파라미터, UI 레이아웃, 씬 구성 설계</span></div>
+        <div class="member"><span class="m-name">unity-lead-planner</span><span class="m-role">피처 범위·우선순위·마일스톤·작업 분배 총괄 기획</span></div>
+        <div class="member"><span class="m-name">unity-detail-planner</span><span class="m-role">구현 조건, 스펙 문서, 엣지 케이스, 동작 흐름 세부 기획</span></div>
+        <div class="member"><span class="m-name">unity-documenter</span><span class="m-role">기획·설계·리뷰·QA 산출물을 스펙/가이드/릴리스 노트로 통합 문서화</span></div>
+        <div class="member"><span class="m-name">unity-researcher</span><span class="m-role">기술 조사, 패키지·라이브러리 비교, Unity API 레퍼런스 수집</span></div>
+        <div class="member"><span class="m-name">unity-file-structure-manager</span><span class="m-role">스크립트·리소스·씬 배치 경로 결정, 구조 문서 최신화</span></div>
+        <div class="member"><span class="m-name">unity-sample-scene</span><span class="m-role">기능 검증용 씬·테스트 환경·프로토타입 씬 제작</span></div>
+        <div class="member"><span class="m-name">unity-region-formatter</span><span class="m-role">계층별 표준 #region 규칙 적용, 코드 구조 분리</span></div>
+      </div>
+
+      <!-- molly-team -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>molly-team<span class="line-name">개발 라인</span></h3>
+          <span class="cnt">11명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\molly-team\</div>
+        <div class="member"><span class="m-name">molly-core-agent</span><span class="m-role">MollyCore, 진화 7단계(Baby→Legend), EmotionState, EvoTracker, WobbleShader 연동</span></div>
+        <div class="member"><span class="m-name">molly-status-agent</span><span class="m-role">StatusSystem 4스탯(Hunger/Happiness/Cleanliness/Fatigue), 오프라인 배치 계산, CareSystem</span></div>
+        <div class="member"><span class="m-name">molly-economy-agent</span><span class="m-role">EconomySystem 3종 재화, HeartSystem, RewardSystem, MonetizationSystem</span></div>
+        <div class="member"><span class="m-name">molly-interaction-agent</span><span class="m-role">4종 제스처(Tap/Drag-Pet/Hold/Shake) 감지, WobbleShader·파티클 연동</span></div>
+        <div class="member"><span class="m-name">molly-save-agent</span><span class="m-role">SaveSystem JSON 직렬화, OfflineCareCalc, 클라우드 동기화, 로컬 알림</span></div>
+        <div class="member"><span class="m-name">molly-ui-agent</span><span class="m-role">MainHomeUI·MiniGameUI·ShopUI, DOTween 트랜지션, HUD, 팝업</span></div>
+        <div class="member"><span class="m-name">molly-visual-agent</span><span class="m-role">WobbleShader 최적화, URP Sprite Atlas, 파티클, Spine 2D, Draw Call</span></div>
+        <div class="member"><span class="m-name">minigame-architect</span><span class="m-role">IMiniGame 인터페이스, MiniGameManager 브릿지, 3종 미니게임 공통 구조</span></div>
+        <div class="member"><span class="m-name">minigame-bubblepop</span><span class="m-role">버블팡 미니게임 구현</span></div>
+        <div class="member"><span class="m-name">minigame-jellyslide</span><span class="m-role">젤리 슬라이딩 퍼즐 구현 (6x6 그리드, Undo, BFS 힌트)</span></div>
+        <div class="member"><span class="m-name">minigame-memorymatch</span><span class="m-role">기억력 카드 매칭 미니게임 구현</span></div>
+      </div>
+
+      <!-- plan-team -->
+      <div class="team-card">
+        <div class="team-head th-plan">
+          <h3>plan-team<span class="line-name">기획 라인</span></h3>
+          <span class="cnt">5명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\plan-team\</div>
+        <div class="member"><span class="m-name">plan-hub</span><span class="m-role">plan-team 오케스트레이터. 기획 복합 작업 진입점, 팀원 분배·조율</span></div>
+        <div class="member"><span class="m-name">plan-designer</span><span class="m-role">코어 루프·메카닉·GDD 초안·캐릭터/레벨 설계 원칙</span></div>
+        <div class="member"><span class="m-name">plan-researcher</span><span class="m-role">레퍼런스 수집, 시장 조사, 경쟁작·트렌드 분석</span></div>
+        <div class="member"><span class="m-name">plan-spec-writer</span><span class="m-role">GDD 기반 기능 스펙·시스템 스펙·요구사항 명세</span></div>
+        <div class="member"><span class="m-name">plan-visualizer</span><span class="m-role">GDD·스펙·플로우를 Mermaid 기반 단일 HTML로 시각화</span></div>
+      </div>
+
+      <!-- public-agents -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>public-agents<span class="line-name">개발 라인 (공용)</span></h3>
+          <span class="cnt">8명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\public-agents\</div>
+        <div class="member"><span class="m-name">code-reviewer</span><span class="m-role">범용 코드 리뷰 (품질·버그·패턴·성능·리팩토링)</span></div>
+        <div class="member"><span class="m-name">documenter</span><span class="m-role">마크다운 문서화, README, 회의록·작업 정리, 규칙 문서화</span></div>
+        <div class="member"><span class="m-name">researcher</span><span class="m-role">기술 조사, 라이브러리 비교, API 문서 분석, 레퍼런스 수집</span></div>
+        <div class="member"><span class="m-name">visualizer</span><span class="m-role">Mermaid.js 기반 단일 HTML 시각화 제작</span></div>
+        <div class="member"><span class="m-name">feedback-logger</span><span class="m-role">수행 실패·오류를 일일 피드백 문서에 기록, 주간 요약 생성</span></div>
+        <div class="member"><span class="m-name">file-creator</span><span class="m-role">새 파일·폴더 구조·템플릿·보일러플레이트 생성</span></div>
+        <div class="member"><span class="m-name">file-structure-manager</span><span class="m-role">파일 추가/이동/삭제 시 구조 문서 최신화</span></div>
+        <div class="member"><span class="m-name">git-push</span><span class="m-role">변경 분석, 컨벤션 준수 커밋 메시지 작성, push</span></div>
+      </div>
+
+      <!-- public-team -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>public-team<span class="line-name">개발 라인 (공용)</span></h3>
+          <span class="cnt">1명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\public-team\</div>
+        <div class="member"><span class="m-name">animator-architect</span><span class="m-role">Unity 애니메이터 구조화 공용 매니저. 컨트롤러 구조 정리 + 클립 인벤토리 + 엑셀 산출 3단계 파이프라인 지휘</span></div>
+      </div>
+
+      <!-- github-agents -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>github-agents<span class="line-name">개발 라인</span></h3>
+          <span class="cnt">8명</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\github-agents\</div>
+        <div class="member"><span class="m-name">hub-github</span><span class="m-role">GitHub 분석 팀 오케스트레이터. 팀 구성·작업 조율</span></div>
+        <div class="member"><span class="m-name">repo-fetcher</span><span class="m-role">gh CLI로 레포 정보·README·이슈/PR 통계·브랜치 구조 수집</span></div>
+        <div class="member"><span class="m-name">repo-profiler</span><span class="m-role">기술 스택·프레임워크·빌드 시스템·디렉토리 구조 프로파일링</span></div>
+        <div class="member"><span class="m-name">code-analyzer</span><span class="m-role">안티패턴·복잡 함수·중복 코드·성능 이슈 분석</span></div>
+        <div class="member"><span class="m-name">dependency-analyzer</span><span class="m-role">의존성·버전·CVE 취약점 분석</span></div>
+        <div class="member"><span class="m-name">git-historian</span><span class="m-role">커밋 히스토리·활성도·기여자·마일스톤 분석</span></div>
+        <div class="member"><span class="m-name">github-reporter</span><span class="m-role">팀원 산출물 통합, 최종 분석 보고서 작성</span></div>
+        <div class="member"><span class="m-name">github-visualizer</span><span class="m-role">Mermaid 기반 아키텍처·의존성·커밋 타임라인 다이어그램</span></div>
+      </div>
+
+      <!-- rule-developer -->
+      <div class="team-card">
+        <div class="team-head th-dev">
+          <h3>rule-developer<span class="line-name">개발 라인 — 규칙 생성 파이프라인</span></h3>
+          <span class="cnt">4단계 + ORCHESTRATOR</span>
+        </div>
+        <div class="team-path">C:\DevelopRule\agents\rule-developer\</div>
+        <div class="member"><span class="m-name">Analyzer (Phase 1)</span><span class="m-role">GitHub URL → code-analysis-report.md</span></div>
+        <div class="member"><span class="m-name">Designer (Phase 2)</span><span class="m-role">code-analysis-report.md → rule-design-spec.md</span></div>
+        <div class="member"><span class="m-name">Spec Generator (Phase 3)</span><span class="m-role">rule-design-spec.md → developer-agent-spec.md</span></div>
+        <div class="member"><span class="m-name">Validator (Phase 4)</span><span class="m-role">developer-agent-spec.md → validation-report.md + recommendations.md</span></div>
+        <div class="team-note">파이프라인 정의: <code>ORCHESTRATOR.md</code> — 순차 실행 원칙, 특정 Phase 단독 재실행 가능. (구버전 <code>AGENT.md</code>는 폐기 예정)</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    생성일: 2026-08-03 · 생성: visualizer (CTO 지시) ·
+    원천 문서: <code>C:\DevelopRule\docs\2026-08-03-harness-system-overview.md</code> 2장(지휘 체계) · 3장(에이전트 조직) 기준 ·
+    순수 HTML/CSS 단일 파일 (외부 CDN·JavaScript 미사용)
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 ---
 name: unity-architect
 description: "Unity 시스템 설계 개발자. 시스템 구조, 상태 머신, 패턴 선택, 의존성 설계, 모듈 분리 요청 시 사용. '아키텍처 설계', '구조 잡아줘', '클래스 다이어그램', '의존성 설계' 등의 요청에 사용."
-model: opus
 ---
 
 # Unity Architect — 시스템 설계 개발자

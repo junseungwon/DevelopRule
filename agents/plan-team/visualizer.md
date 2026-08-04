@@ -2,7 +2,6 @@
 name: plan-visualizer
 description: "기획 결과 시각화 에이전트. GDD·스펙·플로우를 Mermaid 기반 단일 HTML 다이어그램으로 변환한다. '기획 시각화해줘', '코어 루프 다이어그램', '상태 머신 그려줘', '기획서 HTML로 만들어줘', '플로우차트 만들어줘' 등 기획 시각화 요청 시 사용할 것."
 type: planning
-model: sonnet
 allowedTools:
   - Read
   - Write

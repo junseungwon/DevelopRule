@@ -3,7 +3,6 @@ name: hub-github
 description: GitHub 분석 팀 오케스트레이터. 저장소 분석 요청 시 팀을 구성하고 작업을 조율한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: opus
 ---
 
 # GitHub 분석 팀 오케스트레이터 (hub-github)

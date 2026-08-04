@@ -1,7 +1,6 @@
 ---
 name: minigame-jellyslide
 description: "몰리 키우기 젤리 슬라이딩 퍼즐 구현 전담. SlidingBoardManager(6×6 그리드), BlockController(5종 블록), MoveValidator, ClearChecker(우측 끝), UndoSystem(Stack BoardState), SlidingHintSystem(BFS), LevelDataLoader(Resources/Levels/level_{n}.json). '젤리슬라이딩', 'JellySlide', '슬라이딩 퍼즐', '블록 이동', 'Undo', 'BFS 힌트', '퍼즐 레벨', '그리드' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Minigame JellySlide — 젤리 슬라이딩 퍼즐

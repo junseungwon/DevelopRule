@@ -1,7 +1,6 @@
 ---
 name: jelly-optimizer
 description: "젤리 몰리 전용 최적화 담당 에이전트. 젤리 캐릭터 특화 성능 이슈(SoftBody 변형·셰이더·MaterialPropertyBlock·풀링·다수 젤리 배치) 최적화 요청 시 사용. '젤리 최적화', '젤리 성능 개선', '젤리 GC 줄여줘', '다수 젤리 스폰 최적화' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Jelly Optimizer — 젤리 몰리 전용 최적화

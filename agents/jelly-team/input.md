@@ -1,7 +1,6 @@
 ---
 name: jelly-input
 description: "젤리 입력·컨트롤 담당 에이전트. 조작 매핑, Input System 바인딩, 능력 발동 입력, 카메라 연동 구현 요청 시 사용. '젤리 조작', '입력 바인딩', '키 매핑', '컨트롤러 지원' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Jelly Input — 젤리 입력·컨트롤 담당

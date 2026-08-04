@@ -1,7 +1,6 @@
 ---
 name: unity-documenter
 description: "Unity 프로젝트 문서화 전문 에이전트. 기획·설계·리뷰·QA 산출물을 스펙/가이드/릴리스 노트로 통합 정리. '문서 정리', '스펙 문서', '릴리스 노트', '가이드 작성' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Unity Documenter — 문서화 담당

@@ -73,5 +73,4 @@ FOR EACH public member (클래스/메서드/프로퍼티)
 ## 예외
 
 - private/internal 멤버: 선택사항
-- 재정의 메서드: `<inheritdoc/>` 사용 가능
 - 테스트 메서드: 주석 생략 가능

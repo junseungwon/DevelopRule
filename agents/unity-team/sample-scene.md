@@ -1,7 +1,6 @@
 ---
 name: unity-sample-scene
 description: "Unity 샘플씬 및 프로토타입 씬 제작 에이전트. 기능 검증용 씬 구성, 테스트 환경 세팅, 프로토타입 씬 설계 요청 시 사용. '샘플씬', '테스트 씬', '프로토타입 씬' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Unity Sample Scene — 샘플·프로토타입 씬 제작

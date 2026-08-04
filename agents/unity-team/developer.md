@@ -1,7 +1,6 @@
 ---
 name: unity-developer
 description: "Unity C# 하위 기능 개발자. 스크립트 작성, 기능 구현, 버그 수정, 리팩토링 요청 시 사용. '구현해줘', '기능 만들어줘', '버그 수정', '리팩토링' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Unity Developer — 하위 기능 개발자

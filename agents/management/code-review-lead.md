@@ -1,8 +1,7 @@
-﻿---
+---
 name: 코드 점검자 팀장
 description: 코드 품질 평가 총괄. CTO 지시 하에 점검자들을 배치하고 S/A/B/C/D/E/F 등급을 수합하여 보고한다.
 type: management
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

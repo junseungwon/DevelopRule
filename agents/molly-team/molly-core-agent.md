@@ -1,7 +1,6 @@
 ---
 name: molly-core-agent
 description: "몰리 키우기 핵심 캐릭터 시스템 전담. MollyCore 클래스, 진화 단계(Baby→Legend 7단계), EmotionState 로직, EvoTracker 6가지 카운터, WobbleShader 파라미터 연동 구현. 'MollyCore 만들어줘', '진화 시스템', 'EmotionState', 'EvoTracker', '진화 조건', '몰리 감정' 등의 작업 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Core Agent — 몰리 캐릭터 코어 시스템

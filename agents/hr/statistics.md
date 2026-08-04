@@ -2,7 +2,6 @@
 name: 통계 담당
 description: 에이전트별·기간별 평가 점수를 분석하고 통계 리포트를 산출한다.
 type: hr
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

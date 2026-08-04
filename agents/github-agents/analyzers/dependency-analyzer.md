@@ -3,7 +3,6 @@ name: dependency-analyzer
 description: 의존성 및 보안 분석 전문. 패키지 파일을 파싱하여 라이브러리 목록 추출, 버전 확인, CVE 취약점 검색을 수행한다.
 type: GitHub에이전트
 team: github-analysis-team
-model: sonnet
 ---
 
 # Dependency Analyzer (dependency-analyzer)

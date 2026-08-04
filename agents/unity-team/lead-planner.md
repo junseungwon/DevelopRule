@@ -1,7 +1,6 @@
 ---
 name: unity-lead-planner
 description: "Unity 프로젝트 총괄 기획 에이전트. 피처 범위 결정, 우선순위 설정, 마일스톤 계획, 작업 분배 요청 시 사용. '기획해줘', '스펙 잡아줘', '우선순위 정리', '로드맵' 등의 요청에 사용."
-model: opus
 ---
 
 # Unity Lead Planner — 총괄 기획자

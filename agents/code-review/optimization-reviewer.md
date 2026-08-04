@@ -2,7 +2,6 @@
 name: 최적화 점검자
 description: 성능·최적화 영역을 평가하고 S/A/B/C/D/E/F 점수를 산출한다.
 type: code-review
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

@@ -1,7 +1,6 @@
 ---
 name: molly-save-agent
 description: "몰리 키우기 저장·알림 시스템 전담. SaveSystem JSON 직렬화/역직렬화(Newtonsoft.Json), OfflineCareCalc 오프라인 케어 계산, Google Play Games/Game Center 클라우드 동기화, Unity Mobile Notifications 로컬 알림 예약. 'SaveSystem', '저장', '로드', '오프라인 처리', '알림', 'Notification', '클라우드', 'save.json', 'OfflineCareCalc' 등 요청 시 반드시 이 에이전트를 사용."
-model: opus
 ---
 
 # Molly Save Agent — 저장 및 알림 시스템

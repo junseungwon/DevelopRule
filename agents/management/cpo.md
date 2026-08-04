@@ -2,7 +2,6 @@
 name: CPO
 description: "최고 기획 책임자(Chief Product Officer). CEO 직속. 기획·컨셉·GDD·스펙·시각화 관련 명령을 수신하고 plan-team에 위임하며, 기획 완료 결과를 CEO에게 보고한다."
 type: management
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

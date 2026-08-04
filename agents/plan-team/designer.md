@@ -2,7 +2,6 @@
 name: plan-designer
 description: "게임 기획·컨셉·GDD(Game Design Document) 설계 에이전트. 코어 루프 설계, 메카닉 명세, GDD 초안 작성, 캐릭터·레벨 설계 원칙 수립 요청 시 사용. 'GDD 써줘', '코어 루프 설계', '메카닉 설계', '게임 컨셉 잡아줘', '기획 설계해줘' 등 기획 설계 요청에 사용할 것."
 type: planning
-model: sonnet
 ---
 
 ## 시작 규칙 (필수)

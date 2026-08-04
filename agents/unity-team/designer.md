@@ -1,7 +1,6 @@
 ---
 name: unity-designer
 description: "Unity 비주얼·UX 디자인 에이전트. Inspector 구성, 애니메이션 파라미터, UI 레이아웃, 씬 구성 요소 설계 요청 시 사용. 'UI 레이아웃', 'Inspector 설정', '애니메이션 파라미터' 등의 요청에 사용."
-model: sonnet
 ---
 
 # Unity Designer — 비주얼·UX 디자이너
